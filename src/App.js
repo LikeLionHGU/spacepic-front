@@ -32,6 +32,9 @@ time, mark, audio, video {
 *[hidden] {
     display: none;
 }
+body {
+  background-color: black;
+}
 `;
 
 const queryClient = new QueryClient();
