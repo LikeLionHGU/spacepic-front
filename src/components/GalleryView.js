@@ -182,14 +182,10 @@ const Page = styled.div`
 `;
 
 const PhotoFrame = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 20px; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 50px;
-  /* grid-auto-rows: 1fr;*/
+  margin: 50px 0px;
 `;
 
 const Photo = styled.div`
