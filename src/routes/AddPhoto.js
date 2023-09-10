@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { AiFillCamera } from 'react-icons/ai';
 import { Form, Input } from 'antd';
 import axios from 'axios';
-import { Container } from '@mui/material';
-// import axios from 'axios';
 
 const Page = styled.div`
   display: flex;
