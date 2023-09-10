@@ -116,34 +116,34 @@ export default function AddPhoto() {
       <Page>
         {/* <Container> */}
         <Center>
-          {/* <div style={{ padding: '20px' }}> */}
-          <Header>
-            <Title> 이미지 업로드 </Title>
-            <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
-              <TextSub onClick={takeitback}>취소</TextSub>
-              <TextSub onClick={onSubmit}>완료</TextSub>
-            </div>
-          </Header>
-          <Img>
-            {mainImg == null ? (
-              <CustomFileUpload>
-                <input accept="image/*" multiple type="file" onChange={onMainUpload} />
-                <AiFillCamera size={24} />
-              </CustomFileUpload>
-            ) : (
-              mainImg && <img width={'350px'} src={mainImg} alt="Main" />
-              // mainImg && <img width={'350px'} src={URL.createObjectURL(mainImg)} alt="Main" />
-            )}
-          </Img>
+          <div style={{ padding: '20px' }}>
+            <Header>
+              <Title> 이미지 업로드 </Title>
+              <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
+                <TextSub onClick={takeitback}>취소</TextSub>
+                <TextSub onClick={onSubmit}>완료</TextSub>
+              </div>
+            </Header>
+            <Img>
+              {mainImg == null ? (
+                <CustomFileUpload>
+                  <input accept="image/*" multiple type="file" onChange={onMainUpload} />
+                  <AiFillCamera size={24} />
+                </CustomFileUpload>
+              ) : (
+                mainImg && <img width={'350px'} src={mainImg} alt="Main" />
+                // mainImg && <img width={'350px'} src={URL.createObjectURL(mainImg)} alt="Main" />
+              )}
+            </Img>
 
-          <Form.Item name="photo_sentence">
-            <Input
-              size="large"
-              placeholder="간단한 문구를 작성하세요"
-              onChange={e => setPhotoSentence(e.target.value)}
-            />
-          </Form.Item>
-          {/* </div> */}
+            <Form.Item name="photo_sentence">
+              <Input
+                size="large"
+                placeholder="간단한 문구를 작성하세요"
+                onChange={e => setPhotoSentence(e.target.value)}
+              />
+            </Form.Item>
+          </div>
         </Center>
         {/* </Container> */}
       </Page>
