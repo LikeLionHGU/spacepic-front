@@ -198,8 +198,6 @@ const Img = styled.img`
   height: 415px;
 `;
 
-
-
 export default function GalleryView() {
   return (
     <>
