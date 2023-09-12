@@ -1,5 +1,20 @@
+import { Api } from '@mui/icons-material';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import Footer from './Footer';
+import { useState } from 'react';
+
+// function PhotoWithText({imageurl, description}) {
+//   const[isHovered, setIsHovered] = useState(false);
+
+//   const handleMouseEnter = () => {
+//     setIsHovered(true);
+//   };
+
+//   const handleMouseLeave = () => {
+//     setIsHovered(false);
+//   }
+// }
 
 const Pics = [
   {
@@ -198,14 +213,39 @@ const Img = styled.img`
   height: 415px;
 `;
 
+// function ApiData() {
+//   const {isLoading, error, photo } = useQuery({
+//     queryKey: ['photo'],
+//     queryFn: () => fetch("http://27.96.135.222:8080/").then((res) => res.json(),),
+//   })
+//   if(isLoading) return 'Loading...'
+//   if(error) return 'error'
+
+//   return(
+//     document.write({photo.id})
+//   )
+// }
 export default function GalleryView() {
+  const [isHovered, setIsHovered] = useState(-1);
+
+    const handleMouseEnter = (index) => {
+      setIsHovered(index);
+    };
+
+    const handleMouseLeave = () => {
+      setIsHovered(-1);
+    };
   return (
+    
     <>
+    
       <Page>
         <PhotoFrame>
-          {Pics.map(photo => (
-            <Photo key={photo.id} num={photo.id}>
-              <Img src={photo.photoUrl} alt={photo.desc} />
+          {Pics.map((photo, index) => (
+            <Photo key={photo.id} num={photo.id} onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave} > {
+                isHovered === index ? <Img src="https://img.freepik.com/free-photo/textured-background-in-white-tone_53876-128610.jpg" alt='hi'/> : <Img src={photo.photoUrl} alt={photo.desc} />
+              }
             </Photo>
           ))}
         </PhotoFrame>
