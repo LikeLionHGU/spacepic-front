@@ -1,6 +1,7 @@
-import FirstPage from '../components/FirstPage';
-import GalleryView from '../components/GalleryView';
-import MiddleSlide from '../components/MiddleSlide';
+import FirstPage from "../components/FirstPage";
+import GalleryView from "../components/GalleryView";
+import MiddleSlide from "../components/MiddleSlide";
+import ReloadBtn from "../components/ReloadBtn";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <FirstPage />
       <MiddleSlide />
       <GalleryView />
+      <ReloadBtn />
     </>
   );
 }
