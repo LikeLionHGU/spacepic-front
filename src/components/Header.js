@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import LogoPng from '../imgs/Logo.png';
+import LogoPng from '../assets/imgs/Logo.png';
 
 const HeaderBar = styled.div`
   height: 80px;
