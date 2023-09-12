@@ -184,8 +184,9 @@ const Page = styled.div`
 const PhotoFrame = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
-  margin: 50px 0px;
+  grid-column-gap: 25px;
+  grid-row-gap: 60px;
+  margin: 100px 0px;
 `;
 
 const Photo = styled.div`
@@ -194,8 +195,9 @@ const Photo = styled.div`
 `;
 
 const Img = styled.img`
-  width: 275px;
-  height: 415px;
+  width: 282px;
+  height: 422px;
+  object-fit: cover;
 `;
 
 export default function GalleryView() {
