@@ -4,7 +4,7 @@ import star from '../assets/imgs/Star.png';
 const Page = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: black;
+  /* background-color: black; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,6 +14,7 @@ const Page = styled.div`
 
 const Logo = styled.div`
   font-size: 50px;
+  font-family: 'IBM Plex Mono', monospace;
 `;
 
 const Img = styled.img`
