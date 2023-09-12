@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { AiFillCamera } from 'react-icons/ai';
-import axios from 'axios';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
 const Page = styled.div`
   display: flex;
@@ -68,24 +68,31 @@ export default function AddPhoto() {
   const [mainImg, setMainImg] = useState(null);
   const [photoSentence, setPhotoSentence] = useState('');
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     const formData = new FormData();
     const postData = {
       meaning: photoSentence,
     };
+    // formData.append('post', new Blob([JSON.stringify(postData)]), { type: 'application/json' });
+
     formData.append('post', JSON.stringify(postData));
+
     formData.append('file', mainImg);
     console.log(formData.get('file'));
     console.log(formData.get('post'));
 
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data', // 이 부분을 확인
+    //   },
+    // };
 
-    await axios
-      .post(`http://27.96.135.222:8080/api/post/add`, formData, config)
+    axios
+      .post(`http://27.96.135.222:8080/api/post/add`, formData, {
+        headers: {
+          'Content-Type': `multipart/form-data`, // For file
+        },
+      })
       .then(response => {
         console.log('업로드 성공');
         console.log(response.data);
