@@ -225,6 +225,9 @@ const Img = styled.img`
 //     document.write({photo.id})
 //   )
 // }
+// const text = {
+//   transition: opacity 0.5s ease-in-out; 
+// }
 export default function GalleryView() {
   const [isHovered, setIsHovered] = useState(-1);
 
@@ -244,7 +247,7 @@ export default function GalleryView() {
           {Pics.map((photo, index) => (
             <Photo key={photo.id} num={photo.id} onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave} > {
-                isHovered === index ? <Img src="https://img.freepik.com/free-photo/textured-background-in-white-tone_53876-128610.jpg" alt='hi'/> : <Img src={photo.photoUrl} alt={photo.desc} />
+                isHovered === index ? <Img class="base-image" src="https://img.freepik.com/free-photo/textured-background-in-white-tone_53876-128610.jpg" alt='hi'/> : <Img src={photo.photoUrl} alt={photo.desc} class="hover-image"/>
               }
             </Photo>
           ))}
