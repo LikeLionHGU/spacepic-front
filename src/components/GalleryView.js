@@ -1,4 +1,4 @@
-import { Api } from '@mui/icons-material';
+import { Api, Description } from '@mui/icons-material';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import Footer from './Footer';
@@ -212,6 +212,11 @@ const Img = styled.img`
   width: 275px;
   height: 415px;
 `;
+const Div = styled.div`
+  width:275px;
+  height: 415px;
+  background-color:white;
+`;
 
 // function ApiData() {
 //   const {isLoading, error, photo } = useQuery({
@@ -247,7 +252,7 @@ export default function GalleryView() {
           {Pics.map((photo, index) => (
             <Photo key={photo.id} num={photo.id} onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave} > {
-                isHovered === index ? <Img class="base-image" src="https://img.freepik.com/free-photo/textured-background-in-white-tone_53876-128610.jpg" alt='hi'/> : <Img src={photo.photoUrl} alt={photo.desc} class="hover-image"/>
+                isHovered === index ? <Div><p>description</p></Div> : <Img src={photo.photoUrl} alt={photo.desc} ></Img>
               }
             </Photo>
           ))}
