@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import FirstPage from "../components/FirstPage";
-import GalleryView from "../components/GalleryView";
-import MiddleSlide from "../components/MiddleSlide";
-import background from "../assets/imgs/bgimg.png";
-import ReloadBtn from "../components/ReloadBtn";
+import styled from 'styled-components';
+import FirstPage from '../components/FirstPage';
+import GalleryView from '../components/GalleryView';
+import MiddleSlide from '../components/MiddleSlide';
+import background from '../assets/imgs/bgimg.png';
+import ReloadBtn from '../components/ReloadBtn';
 
 const BgImg = styled.div`
   height: 150vh;
@@ -19,7 +19,6 @@ export default function Home() {
     <>
       <BgImg>
         <FirstPage />
-        {/* </BgImg> */}
         <MiddleSlide />
       </BgImg>
       <GalleryView />

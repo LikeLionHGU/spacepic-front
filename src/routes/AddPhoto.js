@@ -1,8 +1,8 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { AiFillCamera } from "react-icons/ai";
-import TextField from "@mui/material/TextField";
-import axios from "axios";
+import { useState } from 'react';
+import styled from 'styled-components';
+import { AiFillCamera } from 'react-icons/ai';
+import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
 const Page = styled.div`
   display: flex;
@@ -59,62 +59,60 @@ const CustomFileUpload = styled.label`
     background-color: #e0e0e0;
   }
 
-  input[type="file"] {
+  input[type='file'] {
     display: none;
   }
 `;
 
 export default function AddPhoto() {
   const [mainImg, setMainImg] = useState(null);
-  const [photoSentence, setPhotoSentence] = useState("");
+  const [photoSentence, setPhotoSentence] = useState('');
 
   const onSubmit = () => {
     const formData = new FormData();
-    formData.append("file", mainImg); // 'file'는 서버에서 이미지를 받는 필드명
+    formData.append('file', mainImg); // 'file'는 서버에서 이미지를 받는 필드명
     formData.append(
-      "post",
+      'post',
       new Blob([JSON.stringify({ post: photoSentence })], {
-        type: "application/json",
-      })
+        type: 'application/json',
+      }),
     );
-    console.log(formData.get("file"));
+    console.log(formData.get('file'));
 
     axios
       .post(`http://27.96.135.222:8080/api/post/add`, formData, {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       })
-      .then((result) => {
-        console.log("up");
+      .then(result => {
+        console.log('up');
         console.log(result);
         // navigate('/');
       })
-      .catch((e) => {
-        console.log("error");
+      .catch(e => {
+        console.log('error');
         console.log(e);
       });
   };
 
-  const onMainUpload = (e) => {
+  const onMainUpload = e => {
     console.log(e.target.files[0]);
     const file = e.target.files[0];
     setMainImg(file);
   };
 
-  const takeitback = (e) => {
+  const takeitback = e => {
     setMainImg(null);
-    setPhotoSentence("");
+    setPhotoSentence('');
   };
 
   return (
     <>
       <Page>
         <Center>
-          <div style={{ padding: "20px" }}>
+          <div style={{ padding: '20px' }}>
             <Header>
               <Title> 이미지 업로드 </Title>
-              <div
-                style={{ display: "flex", flexDirection: "row", gap: "5px" }}
-              >
+              <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
                 <TextSub onClick={takeitback}>취소</TextSub>
                 <TextSub onClick={onSubmit}>완료</TextSub>
               </div>
@@ -126,21 +124,15 @@ export default function AddPhoto() {
                   <AiFillCamera size={24} />
                 </CustomFileUpload>
               ) : (
-                mainImg && (
-                  <img
-                    width={"350px"}
-                    src={URL.createObjectURL(mainImg)}
-                    alt="Main"
-                  />
-                )
+                mainImg && <img width={'350px'} src={URL.createObjectURL(mainImg)} alt="Main" />
               )}
             </Img>
             <TextField
               id="outlined-basic"
               variant="outlined"
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               value={photoSentence}
-              onChange={(e) => setPhotoSentence(e.target.value)}
+              onChange={e => setPhotoSentence(e.target.value)}
             />
           </div>
         </Center>
