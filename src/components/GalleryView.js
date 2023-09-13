@@ -1,5 +1,20 @@
+import { Api, Description } from '@mui/icons-material';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import Footer from './Footer';
+import { useState } from 'react';
+
+// function PhotoWithText({imageurl, description}) {
+//   const[isHovered, setIsHovered] = useState(false);
+
+//   const handleMouseEnter = () => {
+//     setIsHovered(true);
+//   };
+
+//   const handleMouseLeave = () => {
+//     setIsHovered(false);
+//   }
+// }
 
 const Pics = [
   {
@@ -199,15 +214,48 @@ const Img = styled.img`
   height: 422px;
   object-fit: cover;
 `;
+const Div = styled.div`
+  width:275px;
+  height: 415px;
+  background-color:white;
+`;
 
+// function ApiData() {
+//   const {isLoading, error, photo } = useQuery({
+//     queryKey: ['photo'],
+//     queryFn: () => fetch("http://27.96.135.222:8080/").then((res) => res.json(),),
+//   })
+//   if(isLoading) return 'Loading...'
+//   if(error) return 'error'
+
+//   return(
+//     document.write({photo.id})
+//   )
+// }
+// const text = {
+//   transition: opacity 0.5s ease-in-out; 
+// }
 export default function GalleryView() {
+  const [isHovered, setIsHovered] = useState(-1);
+
+    const handleMouseEnter = (index) => {
+      setIsHovered(index);
+    };
+
+    const handleMouseLeave = () => {
+      setIsHovered(-1);
+    };
   return (
+    
     <>
+    
       <Page>
         <PhotoFrame>
-          {Pics.map(photo => (
-            <Photo key={photo.id} num={photo.id}>
-              <Img src={photo.photoUrl} alt={photo.desc} />
+          {Pics.map((photo, index) => (
+            <Photo key={photo.id} num={photo.id} onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave} > {
+                isHovered === index ? <Div><p>description</p></Div> : <Img src={photo.photoUrl} alt={photo.desc} ></Img>
+              }
             </Photo>
           ))}
         </PhotoFrame>
