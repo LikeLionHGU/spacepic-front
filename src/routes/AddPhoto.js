@@ -73,9 +73,9 @@ export default function AddPhoto() {
     formData.append('file', mainImg); // 'file'는 서버에서 이미지를 받는 필드명
     formData.append(
       'post',
-      new Blob([JSON.stringify({ post: photoSentence })], {
+      new Blob([JSON.stringify(photoSentence)], {
         type: 'application/json',
-      }),
+      })
     );
     console.log(formData.get('file'));
 
@@ -83,24 +83,24 @@ export default function AddPhoto() {
       .post(`${process.env.REACT_APP_BASE_URL}/api/post/add`, formData, {
         'Content-Type': 'multipart/form-data',
       })
-      .then(result => {
+      .then((result) => {
         console.log('up');
         console.log(result);
         // navigate('/');
       })
-      .catch(e => {
+      .catch((e) => {
         console.log('error');
         console.log(e);
       });
   };
 
-  const onMainUpload = e => {
+  const onMainUpload = (e) => {
     console.log(e.target.files[0]);
     const file = e.target.files[0];
     setMainImg(file);
   };
 
-  const takeitback = e => {
+  const takeitback = (e) => {
     setMainImg(null);
     setPhotoSentence('');
   };
@@ -112,7 +112,9 @@ export default function AddPhoto() {
           <div style={{ padding: '20px' }}>
             <Header>
               <Title> 이미지 업로드 </Title>
-              <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
+              <div
+                style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}
+              >
                 <TextSub onClick={takeitback}>취소</TextSub>
                 <TextSub onClick={onSubmit}>완료</TextSub>
               </div>
@@ -124,7 +126,13 @@ export default function AddPhoto() {
                   <AiFillCamera size={24} />
                 </CustomFileUpload>
               ) : (
-                mainImg && <img width={'350px'} src={URL.createObjectURL(mainImg)} alt="Main" />
+                mainImg && (
+                  <img
+                    width={'350px'}
+                    src={URL.createObjectURL(mainImg)}
+                    alt="Main"
+                  />
+                )
               )}
             </Img>
             <TextField
@@ -132,7 +140,7 @@ export default function AddPhoto() {
               variant="outlined"
               style={{ width: '100%' }}
               value={photoSentence}
-              onChange={e => setPhotoSentence(e.target.value)}
+              onChange={(e) => setPhotoSentence(e.target.value)}
             />
           </div>
         </Center>
