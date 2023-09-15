@@ -43,11 +43,7 @@ const Div = styled.div`
 export default function GetPhotosGalleryView() {
   const [isHovered, setIsHovered] = useState(-1);
 
-  const { data: photos } = useQuery(['GetPhotos', GetPhotos], () => GetPhotos().then(response => response.data), {
-    onSuccess: data => {
-      console.log('GetPhotos', data);
-    },
-  });
+  const { data: photos } = useQuery(['GetPhotos', GetPhotos], () => GetPhotos().then(response => response.data), {});
 
   const handleMouseEnter = index => {
     setIsHovered(index);
