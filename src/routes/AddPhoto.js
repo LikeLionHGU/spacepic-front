@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { AiFillCamera } from 'react-icons/ai';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Page = styled.div`
   display: flex;
@@ -67,6 +68,7 @@ const CustomFileUpload = styled.label`
 export default function AddPhoto() {
   const [mainImg, setMainImg] = useState(null);
   const [photoSentence, setPhotoSentence] = useState('');
+  const history = useHistory();
 
   const onSubmit = () => {
     const formData = new FormData();
@@ -79,19 +81,21 @@ export default function AddPhoto() {
     );
     console.log(formData.get('file'));
 
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/api/post/add`, formData, {
-        'Content-Type': 'multipart/form-data',
-      })
-      .then((result) => {
-        console.log('up');
-        console.log(result);
-        // navigate('/');
-      })
-      .catch((e) => {
-        console.log('error');
-        console.log(e);
-      });
+    // axios
+    //   .post(`${process.env.REACT_APP_BASE_URL}/api/post/add`, formData, {
+    //     'Content-Type': 'multipart/form-data',
+    //   })
+    //   .then((result) => {
+    //     console.log('up');
+    //     console.log(result);
+    //     // navigate('/');
+    //   })
+    //   .catch((e) => {
+    //     console.log('error');
+    //     console.log(e);
+    //   });
+
+    history.push('/finished');
   };
 
   const onMainUpload = (e) => {
@@ -140,6 +144,7 @@ export default function AddPhoto() {
               variant="outlined"
               style={{ width: '100%' }}
               value={photoSentence}
+              placeholder="간단한 문구를 작성해보세요!"
               onChange={(e) => setPhotoSentence(e.target.value)}
             />
           </div>
