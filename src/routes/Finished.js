@@ -38,7 +38,7 @@ const FeedbackBtn = styled.button`
 
 export default function Finished() {
   const gotoFeedbackForm = () => {
-    window.location.href = 'https://forms.gle/9Z1Z1Z1Z1Z1Z1Z1Z1';
+    window.location.href = 'https://walla.my/survey/teqiTvafkiDLHia1L2Sa';
   };
 
   return (
