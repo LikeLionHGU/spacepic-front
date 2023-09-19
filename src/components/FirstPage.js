@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import star from '../assets/imgs/Star.png';
+import Logo from '../assets/imgs/Logo.png';
 
 const Page = styled.div`
   height: 100vh;
   width: 100vw;
-  /* background-color: black; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,50 +12,41 @@ const Page = styled.div`
   color: white;
 `;
 
-const Logo = styled.div`
-  font-size: 50px;
-  font-family: 'IBM Plex Mono', monospace;
-`;
-
 const Img = styled.img`
   width: 60px;
-  margin-top: 100px;
-  margin-bottom: 50px;
 `;
 
-const Desc2 = styled.div`
+const LogoImg = styled.img`
+  width: 275px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+`;
+
+const Desc = styled.div`
   margin: 5px;
-  font-size: 16px;
+  font-size: 18px;
 `;
 
-const Desc1 = styled(Desc2)`
-  margin-bottom: 30px;
-`;
-
-const URL = styled.div`
-  color: #734bfb;
-  margin-top: 75px;
-  font-size: 16px;
-  border-bottom: 1px solid #734bfb;
-`;
-
-const Sized = styled.div`
-  height: 100px;
+const SizedBox = styled.div`
+  height: 250px;
 `;
 
 export default function FirstPage() {
   return (
     <>
       <Page>
-        <Logo> Space pic </Logo>
         <Img src={star} alt="star" />
-        <Desc1> Spacepic에서 당신의 행성을 공유하세요! </Desc1>
-        <Desc2> 우리는 이러쿵저러쿵할 예정이며,</Desc2>
-        <Desc2>그로인해 유저는 이러한 </Desc2>
-        <Desc2> 장점을 누릴 수 있습니다!</Desc2>
-        <Desc2>들어가보실까용? </Desc2>
-        <URL> Share your experience </URL>
-        <Sized />
+        <LogoImg src={Logo} alt="logo" />
+        <Desc> 네컷사진에 진심인 사람들을 위한 </Desc>
+        <Desc> 아카이빙에 진심인 사람들을 위한 </Desc>
+        <SizedBox />
+        <Desc>
+          SPACEPIC은 여러분의 이야기와 순간들을 더 특별하게 만들어주는 곳입니다.
+        </Desc>
+        <Desc>
+          지금 바로 이곳에서 사진을 게시하여, 소중한 순간들로 공간을 함께
+          채워보세요.
+        </Desc>
       </Page>
     </>
   );

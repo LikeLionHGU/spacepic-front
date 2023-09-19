@@ -65,9 +65,15 @@ export default function ReloadBtn() {
 
   return (
     <>
-      <Btn onClick={refreshPage} onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
+      <Btn
+        onClick={refreshPage}
+        onMouseEnter={showTooltip}
+        onMouseLeave={hideTooltip}
+      >
         <Logo src={BtnPng} />
-        <BalloonTooltip isVisible={isTooltipVisible}>사진이 새로고침 됩니다!</BalloonTooltip>
+        <BalloonTooltip isVisible={isTooltipVisible}>
+          사진이 새로고침 됩니다!
+        </BalloonTooltip>
       </Btn>
     </>
   );
