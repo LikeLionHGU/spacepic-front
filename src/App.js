@@ -5,7 +5,7 @@ import Router from './Router';
 import theme from './theme';
 import { RecoilRoot } from 'recoil';
 import { createGlobalStyle } from 'styled-components';
-// import { GoogleOAuthProvider } from '@react-oauth/google';
+import background from './assets/imgs/bgimg.png';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
@@ -33,7 +33,13 @@ time, mark, audio, video {
     display: none;
 }
 body {
-  background-color: black;
+  background-color: white;
+  /* height: 300vh;
+  width: 100vw;
+  background-image: url(${background});
+  background-repeat: repeat-y;
+  background-size: cover;
+  background-position: center; */
 }
 `;
 

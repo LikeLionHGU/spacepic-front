@@ -8,12 +8,12 @@ import { useHistory } from 'react-router-dom';
 const Page = styled.div`
   display: flex;
   justify-content: center;
-  background-color: black;
+  /* background-color: black; */
 `;
 
 const Center = styled.div`
   max-width: 100vw;
-  min-width: 390px;
+  /* min-width: 390px; */
   height: 100vh;
   background-color: white;
 `;
@@ -79,27 +79,23 @@ export default function AddPhoto() {
         type: 'application/json',
       })
     );
-    console.log(formData.get('file'));
 
-    // axios
-    //   .post(`${process.env.REACT_APP_BASE_URL}/api/post/add`, formData, {
-    //     'Content-Type': 'multipart/form-data',
-    //   })
-    //   .then((result) => {
-    //     console.log('up');
-    //     console.log(result);
-    //     // navigate('/');
-    //   })
-    //   .catch((e) => {
-    //     console.log('error');
-    //     console.log(e);
-    //   });
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/api/post/add`, formData, {
+        'Content-Type': 'multipart/form-data',
+      })
+      .then((result) => {
+        console.log('up');
+      })
+      .catch((e) => {
+        console.log('error');
+        console.log(e);
+      });
 
     history.push('/finished');
   };
 
   const onMainUpload = (e) => {
-    console.log(e.target.files[0]);
     const file = e.target.files[0];
     setMainImg(file);
   };
