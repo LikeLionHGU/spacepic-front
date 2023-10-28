@@ -1,6 +1,5 @@
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import Footer from './Footer';
 import { useState } from 'react';
 import { GetPhotos } from '../apis/photoApi';
 
@@ -105,7 +104,6 @@ export default function GetPhotosGalleryView() {
           ))}
         </PhotoFrame>
       </Page>
-      <Footer />
     </>
   );
 }
