@@ -2,24 +2,203 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { GetPhotos } from '../apis/photoApi';
+import AddPhoto from '../routes/AddPhoto';
+import { useEffect } from 'react';
 
-const Page = styled.div`
-  min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* background-color: yellow; */
-`;
-
-const PhotoFrame = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 25px;
-  grid-row-gap: 60px;
-  margin: 100px 0px;
-`;
+const Pics = [
+  {
+    postId: 1,
+    desc: '김세정씨와 김나영씨 그리고 구구단',
+    photoUrl:
+      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+  },
+  {
+    postId: 2,
+    desc: '에이프릴 나은',
+    photoUrl:
+      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+  },
+  {
+    postId: 3,
+    desc: '에이프릴 나은22',
+    photoUrl:
+      'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+  },
+  {
+    postId: 4,
+    desc: '엔믹스 누군지 모르는 분과 혜원',
+    photoUrl:
+      'https://mblogthumb-phinf.pstatic.net/MjAyMjA4MDNfODkg/MDAxNjU5NTEyNjYzNzMw.J6v8-zDCkkIgZirM1vDBWPMTPyk8ZHCvic6T51NNW6Qg.Ee4l6XSm4CLTf3B-EOwZhBCRysJKHVtDCTUdzJSC0yQg.JPEG.anknara/ffb5940a4b36502b2745856dcfe7c0f7.jpg?type=w800',
+  },
+  {
+    postId: 5,
+    desc: '에이프릴 나은',
+    photoUrl:
+      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+  },
+  {
+    postId: 6,
+    desc: '김세정씨와 김나영씨 그리고 구구단',
+    photoUrl:
+      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+  },
+  {
+    postId: 7,
+    desc: '엔믹스 누군지 모르는 분과 혜원',
+    photoUrl:
+      'https://mblogthumb-phinf.pstatic.net/MjAyMjA4MDNfODkg/MDAxNjU5NTEyNjYzNzMw.J6v8-zDCkkIgZirM1vDBWPMTPyk8ZHCvic6T51NNW6Qg.Ee4l6XSm4CLTf3B-EOwZhBCRysJKHVtDCTUdzJSC0yQg.JPEG.anknara/ffb5940a4b36502b2745856dcfe7c0f7.jpg?type=w800',
+  },
+  {
+    postId: 8,
+    desc: '에이프릴 나은22',
+    photoUrl:
+      'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+  },
+  {
+    postId: 9,
+    desc: '김세정씨와 김나영씨 그리고 구구단',
+    photoUrl:
+      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+  },
+  {
+    postId: 10,
+    desc: '에이프릴 나은',
+    photoUrl:
+      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+  },
+  {
+    postId: 11,
+    desc: '에이프릴 나은22',
+    photoUrl:
+      'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+  },
+  {
+    postId: 12,
+    desc: '엔믹스 누군지 모르는 분과 혜원',
+    photoUrl:
+      'https://mblogthumb-phinf.pstatic.net/MjAyMjA4MDNfODkg/MDAxNjU5NTEyNjYzNzMw.J6v8-zDCkkIgZirM1vDBWPMTPyk8ZHCvic6T51NNW6Qg.Ee4l6XSm4CLTf3B-EOwZhBCRysJKHVtDCTUdzJSC0yQg.JPEG.anknara/ffb5940a4b36502b2745856dcfe7c0f7.jpg?type=w800',
+  },
+  {
+    postId: 13,
+    desc: '에이프릴 나은',
+    photoUrl:
+      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+  },
+  {
+    postId: 14,
+    desc: '김세정씨와 김나영씨 그리고 구구단',
+    photoUrl:
+      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+  },
+  {
+    postId: 15,
+    desc: '엔믹스 누군지 모르는 분과 혜원',
+    photoUrl:
+      'https://mblogthumb-phinf.pstatic.net/MjAyMjA4MDNfODkg/MDAxNjU5NTEyNjYzNzMw.J6v8-zDCkkIgZirM1vDBWPMTPyk8ZHCvic6T51NNW6Qg.Ee4l6XSm4CLTf3B-EOwZhBCRysJKHVtDCTUdzJSC0yQg.JPEG.anknara/ffb5940a4b36502b2745856dcfe7c0f7.jpg?type=w800',
+  },
+  {
+    postId: 16,
+    desc: '에이프릴 나은22',
+    photoUrl:
+      'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+  },
+  {
+    postId: 17,
+    desc: '김세정씨와 김나영씨 그리고 구구단',
+    photoUrl:
+      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+  },
+  {
+    postId: 18,
+    desc: '에이프릴 나은',
+    photoUrl:
+      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+  },
+  {
+    postId: 19,
+    desc: '에이프릴 나은22',
+    photoUrl:
+      'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+  },
+  {
+    postId: 20,
+    desc: '엔믹스 누군지 모르는 분과 혜원',
+    photoUrl:
+      'https://mblogthumb-phinf.pstatic.net/MjAyMjA4MDNfODkg/MDAxNjU5NTEyNjYzNzMw.J6v8-zDCkkIgZirM1vDBWPMTPyk8ZHCvic6T51NNW6Qg.Ee4l6XSm4CLTf3B-EOwZhBCRysJKHVtDCTUdzJSC0yQg.JPEG.anknara/ffb5940a4b36502b2745856dcfe7c0f7.jpg?type=w800',
+  },
+  {
+    postId: 21,
+    desc: '에이프릴 나은',
+    photoUrl:
+      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+  },
+  {
+    postId: 22,
+    desc: '김세정씨와 김나영씨 그리고 구구단',
+    photoUrl:
+      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+  },
+  {
+    postId: 23,
+    desc: '엔믹스 누군지 모르는 분과 혜원',
+    photoUrl:
+      'https://mblogthumb-phinf.pstatic.net/MjAyMjA4MDNfODkg/MDAxNjU5NTEyNjYzNzMw.J6v8-zDCkkIgZirM1vDBWPMTPyk8ZHCvic6T51NNW6Qg.Ee4l6XSm4CLTf3B-EOwZhBCRysJKHVtDCTUdzJSC0yQg.JPEG.anknara/ffb5940a4b36502b2745856dcfe7c0f7.jpg?type=w800',
+  },
+  {
+    postId: 24,
+    desc: '에이프릴 나은22',
+    photoUrl:
+      'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+  },
+  {
+    postId: 25,
+    desc: '김세정씨와 김나영씨 그리고 구구단',
+    photoUrl:
+      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+  },
+  {
+    postId: 26,
+    desc: '에이프릴 나은',
+    photoUrl:
+      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+  },
+  {
+    postId: 27,
+    desc: '에이프릴 나은22',
+    photoUrl:
+      'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+  },
+  {
+    postId: 28,
+    desc: '엔믹스 누군지 모르는 분과 혜원',
+    photoUrl:
+      'https://mblogthumb-phinf.pstatic.net/MjAyMjA4MDNfODkg/MDAxNjU5NTEyNjYzNzMw.J6v8-zDCkkIgZirM1vDBWPMTPyk8ZHCvic6T51NNW6Qg.Ee4l6XSm4CLTf3B-EOwZhBCRysJKHVtDCTUdzJSC0yQg.JPEG.anknara/ffb5940a4b36502b2745856dcfe7c0f7.jpg?type=w800',
+  },
+  {
+    postId: 29,
+    desc: '에이프릴 나은',
+    photoUrl:
+      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+  },
+  {
+    postId: 30,
+    desc: '김세정씨와 김나영씨 그리고 구구단',
+    photoUrl:
+      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+  },
+  {
+    postId: 31,
+    desc: '엔믹스 누군지 모르는 분과 혜원',
+    photoUrl:
+      'https://mblogthumb-phinf.pstatic.net/MjAyMjA4MDNfODkg/MDAxNjU5NTEyNjYzNzMw.J6v8-zDCkkIgZirM1vDBWPMTPyk8ZHCvic6T51NNW6Qg.Ee4l6XSm4CLTf3B-EOwZhBCRysJKHVtDCTUdzJSC0yQg.JPEG.anknara/ffb5940a4b36502b2745856dcfe7c0f7.jpg?type=w800',
+  },
+  {
+    postId: 32,
+    desc: '에이프릴 나은22',
+    photoUrl:
+      'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+  },
+];
 
 const Photo = styled.div`
   margin: 10px;
@@ -32,77 +211,78 @@ const Img = styled.img`
   object-fit: cover;
 `;
 
-const Div = styled.div`
-  width: 300px;
-  height: 434px;
-  background-image: url(${(props) => props.src});
-  background-size: cover;
-  background-position: center;
-`;
+const preparedData = {
+  0: [],
+  1: [],
+  2: [],
+};
 
-const BlackDiv = styled.div`
-  width: 300px;
-  height: 434px;
+const prepare = () => {
+  var i = 0;
+  Pics.forEach((photo) => {
+    preparedData[i % 3].push(photo);
+    i++;
+  });
+};
+
+const Page = styled.div`
   display: flex;
-  flex-direction: column; /* 텍스트를 세로 중앙 정렬하기 위해 컨테이너를 세로 방향으로 설정 */
-  justify-content: center; /* 수직 가운데 정렬 */
-  align-items: center; /* 수평 가운데 정렬 */
-  text-align: center;
-  font-size: 20px;
+  flex-direction: row;
+  justify-content: center;
+  width: 1000px;
+  border-left: 1px solid white;
+  padding-left: 15px;
+`;
+
+const PhotoFrame1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 10px;
+  border-right: 1px solid white;
+`;
+const Context = styled.div`
+  width: 100%;
+  height: ${(props) => props.size || '55px '};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
-  font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  border-bottom: 1px solid white;
+  margin-bottom: 10px;
 `;
 
-const InnerText = styled.div`
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  padding: 0 30px; /* 내부 텍스트에만 양 옆으로 10px의 공간을 추가 */
-  white-space: pre-line; /* 단어 단위로 줄 바꿈 허용 */
-  overflow-wrap: break-word; /* 긴 단어를 여러 줄로 나누기 */
-`;
-
-export default function GetPhotosGalleryView() {
-  const [isHovered, setIsHovered] = useState(-1);
-
+export default function GalleryView() {
   const { data: photos } = useQuery(
     ['GetPhotos', GetPhotos],
     () => GetPhotos().then((response) => response.data),
     {}
   );
 
-  const handleMouseEnter = (index) => {
-    setIsHovered(index);
-  };
+  useEffect(() => {
+    prepare();
+  }, [photos]);
 
-  const handleMouseLeave = () => {
-    setIsHovered(-1);
-  };
+  const dataArrays = [preparedData[0], preparedData[1], preparedData[2]];
 
   return (
     <>
       <Page>
-        <PhotoFrame>
-          {photos?.map((photo) => (
-            <Photo
-              key={photo?.postId}
-              num={photo?.postId}
-              onMouseEnter={() => handleMouseEnter(photo?.postId - 1)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {isHovered === photo?.postId - 1 ? (
-                <Div src={photo?.imageUrl}>
-                  <BlackDiv>
-                    <InnerText> {photo?.meaning}</InnerText>{' '}
-                  </BlackDiv>
-                </Div>
-              ) : (
-                // <Img src={photo?.photoUrl} alt={photo?.desc} />
-                <Img src={photo?.imageUrl} alt={photo?.meaning} />
-                // photoUrl imageUrl  // desc meaning
-              )}
-            </Photo>
-          ))}
-        </PhotoFrame>
+        {dataArrays.map((dataArray, index) => (
+          <PhotoFrame1 key={index}>
+            {dataArray.map((photo) => (
+              <Photo key={photo.postId} num={photo.postId}>
+                <Img src={photo.photoUrl} alt={photo.desc} />
+                {index % 2 === 1 ? (
+                  <Context size="100px"> {photo.desc} </Context>
+                ) : (
+                  <Context> {photo.desc} </Context>
+                )}
+              </Photo>
+            ))}
+          </PhotoFrame1>
+        ))}
       </Page>
     </>
   );
