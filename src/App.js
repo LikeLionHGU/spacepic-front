@@ -5,7 +5,7 @@ import Router from './Router';
 import theme from './theme';
 import { RecoilRoot } from 'recoil';
 import { createGlobalStyle } from 'styled-components';
-import background from './assets/imgs/bgimg.png';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
@@ -29,17 +29,40 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+  display: block;
+}
+/* HTML5 hidden-attribute fix for newer browsers */
 *[hidden] {
     display: none;
 }
 body {
-  background-color: white;
-  /* height: 300vh;
-  width: 100vw;
-  background-image: url(${background});
-  background-repeat: repeat-y;
-  background-size: cover;
-  background-position: center; */
+  background-color: black;
+}
+menu, ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+
+}
+a {
+  text-decoration:none;
+  color:inherit;
 }
 `;
 
@@ -51,13 +74,11 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <ThemeProvider theme={theme}>
-            {/* <GoogleOAuthProvider
-              clientId={process.env.REACT_APP_CLIENT_ID as any}
-            > */}
-            <GlobalStyle />
-            <Router />
-            <ReactQueryDevtools initialIsOpen={true} />
-            {/* </GoogleOAuthProvider> */}
+            <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+              <GlobalStyle />
+              <Router />
+              <ReactQueryDevtools initialIsOpen={true} />
+            </GoogleOAuthProvider>
           </ThemeProvider>
         </RecoilRoot>
       </QueryClientProvider>
