@@ -80,17 +80,17 @@ export default function AddPhoto() {
       })
     );
 
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/api/post/add`, formData, {
-        'Content-Type': 'multipart/form-data',
-      })
-      .then((result) => {
-        console.log('up');
-      })
-      .catch((e) => {
-        console.log('error');
-        console.log(e);
-      });
+    // axios
+    //   .post(`${process.env.REACT_APP_BASE_URL}/api/post/add`, formData, {
+    //     'Content-Type': 'multipart/form-data',
+    //   })
+    //   .then((result) => {
+    //     console.log('up');
+    //   })
+    //   .catch((e) => {
+    //     console.log('error');
+    //     console.log(e);
+    //   });
 
     history.push('/finished');
   };
