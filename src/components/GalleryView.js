@@ -1,8 +1,7 @@
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { GetPhotos } from '../apis/photoApi';
-import AddPhoto from '../routes/AddPhoto';
+import { GetDummyPhotos } from '../apis/photoApi';
 import { useEffect } from 'react';
 
 const Pics = [
@@ -255,8 +254,8 @@ const Context = styled.div`
 
 export default function GalleryView() {
   const { data: photos } = useQuery(
-    ['GetPhotos', GetPhotos],
-    () => GetPhotos().then((response) => response.data),
+    ['GetDummyPhotos', GetDummyPhotos],
+    () => GetDummyPhotos().then((response) => response.data),
     {}
   );
 
