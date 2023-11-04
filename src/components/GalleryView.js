@@ -42,37 +42,42 @@ const Context = styled.div`
   margin-bottom: 10px;
 `;
 
+const preparedData = {
+  0: [],
+  1: [],
+  2: [],
+};
+
+const prepare = (photos) => {
+  // Clear previous data
+  preparedData[0] = [];
+  preparedData[1] = [];
+  preparedData[2] = [];
+
+  var i = 0;
+  // Ensure that 'photos' is not undefined before using forEach
+  if (photos) {
+    photos.forEach((photo) => {
+      preparedData[i % 3].push(photo);
+      i++;
+    });
+  }
+};
+
 export default function GalleryView() {
   const { data: photos } = useQuery(
     ['GetDummyPhotos', GetDummyPhotos],
     () => GetDummyPhotos().then((response) => response.data),
-    {}
+    {
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    }
   );
 
-  const preparedData = {
-    0: [],
-    1: [],
-    2: [],
-  };
   useEffect(() => {
-    const prepare = () => {
-      // Clear previous data
-      preparedData[0] = [];
-      preparedData[1] = [];
-      preparedData[2] = [];
-
-      var i = 0;
-      // Ensure that 'photos' is not undefined before using forEach
-      if (photos) {
-        photos.forEach((photo) => {
-          preparedData[i % 3].push(photo);
-          i++;
-        });
-      }
-    };
-
-    prepare();
-  }, []);
+    prepare(photos);
+  }, [photos]);
 
   const dataArrays = [preparedData[0], preparedData[1], preparedData[2]];
 
@@ -87,7 +92,7 @@ export default function GalleryView() {
                 {index % 2 === 1 ? (
                   <Context size="100px"> {photo.title} </Context>
                 ) : (
-                  <Context> {photo.title} </Context>
+                  <Context> {photo.title}</Context>
                 )}
               </Photo>
             ))}
