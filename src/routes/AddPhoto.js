@@ -138,7 +138,7 @@ export default function AddPhoto() {
     );
 
     axios
-      .post(`${process.env.REACT_APP_BASE_URL}/api/post/add`, formData, {
+      .post(`${process.env.REACT_APP_API_URL}/api/post/add`, formData, {
         'Content-Type': 'multipart/form-data',
       })
       .then((result) => {

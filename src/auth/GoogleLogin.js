@@ -22,7 +22,7 @@ export default function GoogleButton() {
 
     try {
       //   const response = await axios.post(
-      //     `${process.env.REACT_APP_BASE_URL}/members/google-login`,
+      //     `${process.env.REACT_APP_API_URL}/members/google-login`,
       //     {
       //       googleAccountId: decodedToken.email, // Google 계정 ID
       //       imgUrl: decodedToken.picture, // 유저 이미지 URL
