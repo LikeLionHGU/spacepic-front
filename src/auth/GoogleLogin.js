@@ -46,7 +46,7 @@ export default function GoogleButton() {
     setLogin(true);
     setMemberId(1);
     console.log('Member ID:', memberId);
-    history.push('/first/signUp/addName');
+    history.push('/');
   };
 
   return (
