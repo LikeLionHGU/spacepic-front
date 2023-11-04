@@ -5,8 +5,10 @@ import { BiSolidUserCircle } from 'react-icons/bi';
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/material';
-import GoogleButton from '../auth/GoogleLogin';
+// import GoogleButton from '../auth/GoogleLogin';
 import { Typography } from 'antd';
+import { useSetRecoilState } from 'recoil';
+import { IsLoginState, MemberIdState } from '../store/atom';
 
 const HeaderBar = styled.div`
   height: 80px;
@@ -54,10 +56,36 @@ const style = {
   p: 4,
 };
 
+const Login = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 18px;
+
+  color: #000000;
+  font-size: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+  }
+`;
+
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const setIsLogin = useSetRecoilState(IsLoginState);
+  const setMeberId = useSetRecoilState(MemberIdState);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const demoLogin = () => {
+    setIsLogin(true);
+    setMeberId(1);
+    handleClose();
+  };
 
   return (
     <>
@@ -86,12 +114,11 @@ export default function Header() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Logo />
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Login
           </Typography>
-
-          <GoogleButton />
+          {/* <GoogleButton /> */}
+          <Login onClick={demoLogin}>데모 로그인 하기</Login>
         </Box>
       </Modal>
     </>

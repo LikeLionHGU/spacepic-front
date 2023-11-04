@@ -6,6 +6,8 @@ import theme from './theme';
 import { RecoilRoot } from 'recoil';
 import { createGlobalStyle } from 'styled-components';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
@@ -74,11 +76,13 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <ThemeProvider theme={theme}>
-            <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
-              <GlobalStyle />
-              <Router />
-              <ReactQueryDevtools initialIsOpen={true} />
-            </GoogleOAuthProvider>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+                <GlobalStyle />
+                <Router />
+                <ReactQueryDevtools initialIsOpen={true} />
+              </GoogleOAuthProvider>
+            </LocalizationProvider>
           </ThemeProvider>
         </RecoilRoot>
       </QueryClientProvider>
