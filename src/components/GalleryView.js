@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { GetPhotos } from '../apis/photoApi';
 import AddPhoto from '../routes/AddPhoto';
 import { useEffect } from 'react';
+import Modal from './Modal';
 
 const Pics = [
   {
@@ -260,6 +261,19 @@ export default function GalleryView() {
     {}
   );
 
+  const [openModal, setOpenModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
+
+  const handleOpenModal = (photo) => {
+    setModalData(photo);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalData(null);
+    setOpenModal(false);
+  };
+
   useEffect(() => {
     prepare();
   }, [photos]);
@@ -272,7 +286,11 @@ export default function GalleryView() {
         {dataArrays.map((dataArray, index) => (
           <PhotoFrame1 key={index}>
             {dataArray.map((photo) => (
-              <Photo key={photo.postId} num={photo.postId}>
+              <Photo
+                key={photo.postId}
+                num={photo.postId}
+                onClick={() => handleOpenModal(photo)}
+              >
                 <Img src={photo.photoUrl} alt={photo.desc} />
                 {index % 2 === 1 ? (
                   <Context size="100px"> {photo.desc} </Context>
@@ -284,6 +302,14 @@ export default function GalleryView() {
           </PhotoFrame1>
         ))}
       </Page>
+      {openModal && (
+        <Modal
+          open={openModal}
+          onClose={handleCloseModal}
+          photos={photos}
+          selectedPhoto={modalData}
+        />
+      )}
     </>
   );
 }
