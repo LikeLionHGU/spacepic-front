@@ -35,8 +35,6 @@ const PhotoFrame = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   grid-auto-flow: dense;
-  /* gap: 40px; */
-  z-index: -1;
 `;
 
 const Context = styled.div`
@@ -68,7 +66,6 @@ export default function ArchiveGalleryView() {
   const [modalData, setModalData] = useState(null);
 
   const handleOpenModal = (photo) => {
-    console.log('??');
     setModalData(photo);
     setOpenModal(true);
   };
@@ -82,15 +79,15 @@ export default function ArchiveGalleryView() {
     <>
       <Page>
         <PhotoFrame>
-          {photos?.map((photo) => (
+          {photos?.map((photo, index) => (
             <Photo
+              onClick={() => handleOpenModal(photo)}
               key={photo.postId}
               num={photo.postId}
-              index={photo.postId}
-              onClick={() => handleOpenModal(photo)}
+              index={index + 1}
             >
               <Img src={photo.imageUrl} alt={photo.title} />
-              <Context> {photo.title} </Context>
+              <Context>{photo.title}</Context>
             </Photo>
           ))}
         </PhotoFrame>

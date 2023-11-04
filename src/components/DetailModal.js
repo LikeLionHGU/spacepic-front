@@ -90,7 +90,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-function DetailModal({ open, onClose, selectedPhoto }) {
+export default function DetailModal({ open, onClose, selectedPhoto }) {
   return (
     <ThemeProvider theme={theme}>
       <Dialog open={open} onClose={onClose}>
@@ -101,14 +101,14 @@ function DetailModal({ open, onClose, selectedPhoto }) {
               <>
                 <ContentWrapper>
                   <Image
-                    src={selectedPhoto.photoUrl}
-                    alt={selectedPhoto.desc}
+                    src={selectedPhoto.imageUrl}
+                    alt={selectedPhoto.meaning}
                   />
                   <TextWrapper>
-                    <Title>테스팅입니다앙러아ㅓ랑</Title>
-                    <Location>포항영일대해수욕장</Location>
-                    <Date>01/01/2023</Date>
-                    <Description>{selectedPhoto.desc}</Description>
+                    <Title>{selectedPhoto.title}</Title>
+                    <Location>{selectedPhoto.place}</Location>
+                    <Date>{selectedPhoto.date}</Date>
+                    <Description>{selectedPhoto.meaning}</Description>
                   </TextWrapper>
                 </ContentWrapper>
               </>
@@ -122,5 +122,3 @@ function DetailModal({ open, onClose, selectedPhoto }) {
     </ThemeProvider>
   );
 }
-
-export default DetailModal;
