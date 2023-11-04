@@ -1,24 +1,10 @@
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
-// import { useState } from 'react';
 import { GetPhotos } from '../apis/photoApi';
 import { useRecoilValue } from 'recoil';
 import { MemberIdState } from '../store/atom';
-
-// const Pics = [
-//   {
-//     postId: 1,
-//     desc: '김세정씨와 김나영씨 그리고 구구단',
-//     photoUrl:
-//       'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
-//   },
-//   {
-//     postId: 2,
-//     desc: '에이프릴 나은',
-//     photoUrl:
-//       'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
-//   },
-// ];
+import { useState } from 'react';
+import DetailModal from './DetailModal';
 
 const Photo = styled.div`
   height: 100%;
@@ -78,18 +64,44 @@ export default function ArchiveGalleryView() {
     }
   );
 
+  const [openModal, setOpenModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
+
+  const handleOpenModal = (photo) => {
+    console.log('??');
+    setModalData(photo);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalData(null);
+    setOpenModal(false);
+  };
+
   return (
     <>
       <Page>
         <PhotoFrame>
           {photos?.map((photo) => (
-            <Photo key={photo.postId} num={photo.postId} index={photo.postId}>
-              <Img src={photo.imageUrl} alt={photo.meaning} />
-              <Context> {photo.meaning} </Context>
+            <Photo
+              key={photo.postId}
+              num={photo.postId}
+              index={photo.postId}
+              onClick={() => handleOpenModal(photo)}
+            >
+              <Img src={photo.imageUrl} alt={photo.title} />
+              <Context> {photo.title} </Context>
             </Photo>
           ))}
         </PhotoFrame>
       </Page>
+      {openModal && (
+        <DetailModal
+          open={openModal}
+          onClose={handleCloseModal}
+          selectedPhoto={modalData}
+        />
+      )}
     </>
   );
 }

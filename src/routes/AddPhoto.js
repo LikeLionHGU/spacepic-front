@@ -143,7 +143,7 @@ export default function AddPhoto() {
       })
       .then((result) => {
         alert('성공적으로 업로드 되었습니다.');
-        history.push('/');
+        history.push('/archive');
       })
       .catch((e) => {
         console.log('error');

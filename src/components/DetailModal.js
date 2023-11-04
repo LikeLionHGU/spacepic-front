@@ -90,7 +90,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-function Modal({ open, onClose, selectedPhoto }) {
+function DetailModal({ open, onClose, selectedPhoto }) {
   return (
     <ThemeProvider theme={theme}>
       <Dialog open={open} onClose={onClose}>
@@ -123,4 +123,4 @@ function Modal({ open, onClose, selectedPhoto }) {
   );
 }
 
-export default Modal;
+export default DetailModal;
