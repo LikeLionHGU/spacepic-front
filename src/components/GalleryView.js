@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { GetDummyPhotos } from '../apis/photoApi';
 import { useEffect } from 'react';
+import Modal from './Modal';
 
 // const Pics = [
 //   {
@@ -250,6 +251,19 @@ export default function GalleryView() {
     {}
   );
 
+  const [openModal, setOpenModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
+
+  const handleOpenModal = (photo) => {
+    setModalData(photo);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalData(null);
+    setOpenModal(false);
+  };
+
   useEffect(() => {
     const prepare = () => {
       var i = 0;
@@ -269,8 +283,12 @@ export default function GalleryView() {
         {dataArrays.map((dataArray, index) => (
           <PhotoFrame1 key={index}>
             {dataArray.map((photo) => (
-              <Photo key={photo.postId} num={photo.postId}>
-                <Img src={photo.imageUrl} alt={photo.desc} />
+              <Photo
+                key={photo.postId}
+                num={photo.postId}
+                onClick={() => handleOpenModal(photo)}
+              >
+                <Img src={photo.imageUrl} alt={photo.meaning} />
                 {index % 2 === 1 ? (
                   <Context size="100px"> {photo.meaning} </Context>
                 ) : (
@@ -281,6 +299,13 @@ export default function GalleryView() {
           </PhotoFrame1>
         ))}
       </Page>
+      {openModal && (
+        <Modal
+          open={openModal}
+          onClose={handleCloseModal}
+          selectedPhoto={modalData}
+        />
+      )}
     </>
   );
 }
