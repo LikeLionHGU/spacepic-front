@@ -1,24 +1,24 @@
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { GetPhotos } from '../apis/photoApi';
 import { useRecoilValue } from 'recoil';
 import { MemberIdState } from '../store/atom';
 
-const Pics = [
-  {
-    postId: 1,
-    desc: '김세정씨와 김나영씨 그리고 구구단',
-    photoUrl:
-      'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
-  },
-  {
-    postId: 2,
-    desc: '에이프릴 나은',
-    photoUrl:
-      'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
-  },
-];
+// const Pics = [
+//   {
+//     postId: 1,
+//     desc: '김세정씨와 김나영씨 그리고 구구단',
+//     photoUrl:
+//       'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+//   },
+//   {
+//     postId: 2,
+//     desc: '에이프릴 나은',
+//     photoUrl:
+//       'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+//   },
+// ];
 
 const Photo = styled.div`
   height: 100%;
@@ -82,10 +82,10 @@ export default function ArchiveGalleryView() {
     <>
       <Page>
         <PhotoFrame>
-          {Pics?.map((photo) => (
+          {photos?.map((photo) => (
             <Photo key={photo.postId} num={photo.postId} index={photo.postId}>
-              <Img src={photo.photoUrl} alt={photo.desc} />
-              <Context> {photo.desc} </Context>
+              <Img src={photo.imageUrl} alt={photo.meaning} />
+              <Context> {photo.meaning} </Context>
             </Photo>
           ))}
         </PhotoFrame>

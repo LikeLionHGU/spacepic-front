@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { IsLoginState, MemberIdState } from '../store/atom';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function GoogleButton() {
   // eslint-disable-next-line no-unused-vars

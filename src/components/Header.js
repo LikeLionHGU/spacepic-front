@@ -5,9 +5,9 @@ import { BiSolidUserCircle } from 'react-icons/bi';
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/material';
-import GoogleButton from '../auth/GoogleLogin';
+// import GoogleButton from '../auth/GoogleLogin';
 import { Typography } from 'antd';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { IsLoginState, MemberIdState } from '../store/atom';
 
 const HeaderBar = styled.div`
