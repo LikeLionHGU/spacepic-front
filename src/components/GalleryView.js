@@ -306,7 +306,6 @@ export default function GalleryView() {
         <Modal
           open={openModal}
           onClose={handleCloseModal}
-          photos={photos}
           selectedPhoto={modalData}
         />
       )}
