@@ -11,20 +11,20 @@ const Pics = [
   {
     postId: 1,
     ranking: 1,
-    desc: '김세정씨와 김나영씨 그리고 구구단',
-    photoUrl: 'https://i.pinimg.com/736x/3f/0b/c4/3f0bc45edd547370e6aff78ef949b833.jpg',
+    desc: '좋은 사람들과 좋은 시간 :)',
+    photoUrl: picture,
   },
   {
     postId: 2,
     ranking: 2,
-    desc: '에이프릴 나은',
-    photoUrl: 'https://i.pinimg.com/736x/40/62/1e/40621edbace8925c63ef4757e8f48f59.jpg',
+    desc: '좋은 사람들과 좋은 시간 :)',
+    photoUrl: picture,
   },
   {
     postId: 3,
     ranking: 3,
-    desc: '에이프릴 나은22',
-    photoUrl: 'https://i.pinimg.com/736x/a2/6e/c2/a26ec20255eb3233ab4949902674e7c7.jpg',
+    desc: '좋은 사람들과 좋은 시간 :)',
+    photoUrl: picture,
   },
 ];
 
@@ -39,7 +39,7 @@ const Item = styled.div`
 
 
 const Container = styled.div`
-  padding-top: 360px;
+  padding-top: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,6 +49,7 @@ const Container = styled.div`
 `;
 
 const Event = styled.div`
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,6 +77,14 @@ const AddPhotoButton = styled.button`
 
 const Picturecontainer = styled.div`
   padding-right: 100px;
+  padding-top: 30px;
+`
+const SecondPicturecontainer = styled.div`
+  padding-right: 100px;
+
+`
+const PicturecontainerIncontainer = styled.div`
+  text-align: center;
 `
 
 export default function EventView() {
@@ -83,7 +92,7 @@ export default function EventView() {
     <Container>
       <Event>
         <MainDesc />
-        <div>이번주 컨셉 주제: 크리스마스와 종강을 기다리는 여러분을 표현해주세요! </div>
+        <div style={{paddingTop: "28px", textAlign: 'center'}}><p>이번주 컨셉 주제:<br />크리스마스와 종강을 기다리는 여러분을 표현해주세요!</p></div>
       </Event>
       
       <Link to="/addphoto" underline="none">
@@ -97,17 +106,16 @@ export default function EventView() {
           <Item>
             <div style={{display: 'flex'}}>
                 <Picturecontainer>
-                  <p style={{paddingTop: "30"}}>2<span>Ranking</span></p>
-                  <img src={picture} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
-                  <p style={{color: 'white'}}>좋은 사람들과 함께 사진dis</p>
+                  <img src={Pics[0].photoUrl} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
+                  <PicturecontainerIncontainer><p>{Pics[0].desc}</p></PicturecontainerIncontainer>
                 </Picturecontainer>
+                <SecondPicturecontainer>
+                  <img src={Pics[1].photoUrl} alt='src/assets/imgs/picture.png' width="391px" height="263px"></img>
+                  <PicturecontainerIncontainer><p>{Pics[1].desc}</p></PicturecontainerIncontainer>
+                </SecondPicturecontainer>
                 <Picturecontainer>
-                  <p>1</p>
-                  <img src={picture} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
-                </Picturecontainer>
-                <Picturecontainer>
-                  <p>3</p>
-                  <img src={picture} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
+                  <img src={Pics[2].photoUrl} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
+                  <PicturecontainerIncontainer><p>{Pics[2].desc}</p></PicturecontainerIncontainer>
                 </Picturecontainer>
             </div>
             </Item>
