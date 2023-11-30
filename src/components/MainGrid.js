@@ -21,6 +21,7 @@ export default function MainGrid() {
       <Grid container spacing={2}>
         <Grid item xs={20}>
           <Item>
+            <div>게시하기</div>
               <svg xmlns="http://www.w3.org/2000/svg" width="154" height="27" viewBox="0 0 154 27" fill="none" margin-bottom="18">
               <path d="M144.714 12.6582C142.64 12.6582 140.943 11.1431 140.943 9.29125V1H139.371V9.29125C139.371 11.1431 137.675 12.6582 135.6 12.6582H126V14.3418H135.6C137.675 14.3418 139.371 15.8569 139.371 17.7088V26H140.943V17.7088C140.943 15.8569 142.64 14.3418 144.714 14.3418H154V12.6582H144.714Z" fill="#33C87E"/>
               <path d="M76.0204 26L75.9728 14.1996L67.5291 23.2424L75.941 14.1752L63 16.2261L75.9342 14.1365L64.5513 8.23829L75.9546 14.1039L71.4573 3.01426L75.9955 14.0917L80.486 3L76.034 14.1039L87.4147 8.20163L76.0567 14.1365L89 16.1833L76.0499 14.1752L84.4981 23.2139L76.0159 14.1996L76.0204 26Z" fill="white" stroke="#FF3CE6" stroke-width="2.75859" stroke-miterlimit="10"/>
@@ -49,7 +50,6 @@ export default function MainGrid() {
                 <div id="Ranking1">
                   <p>1</p>
                   <img src={picture} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
-                  <p>좋은 사람들과 함께간</p>
                   </div>
                 <div id="Ranking3">
                   <p>3</p>
