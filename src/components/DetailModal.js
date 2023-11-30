@@ -107,7 +107,7 @@ export default function DetailModal({ open, onClose, selectedPhoto }) {
                   <TextWrapper>
                     <Title>{selectedPhoto.title}</Title>
                     <Location>{selectedPhoto.place}</Location>
-                    <Date>{selectedPhoto.date}</Date>
+                    <Date>{selectedPhoto.pictureDate}</Date>
                     <Description>{selectedPhoto.meaning}</Description>
                   </TextWrapper>
                 </ContentWrapper>
