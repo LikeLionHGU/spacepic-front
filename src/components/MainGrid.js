@@ -49,6 +49,7 @@ export default function MainGrid() {
                 <div id="Ranking1">
                   <p>1</p>
                   <img src={picture} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
+                  <p>좋은 사람들과 함께간</p>
                   </div>
                 <div id="Ranking3">
                   <p>3</p>
