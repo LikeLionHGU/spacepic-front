@@ -5,7 +5,7 @@ import { BiSolidUserCircle } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/material';
-// import GoogleButton from '../auth/GoogleLogin';
+import GoogleButton from '../auth/GoogleLogin';
 import { Typography } from 'antd';
 import { useSetRecoilState } from 'recoil';
 import { IsLoginState, MemberIdState } from '../store/atom';
@@ -137,8 +137,8 @@ export default function Header({ currMenu }) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Login
           </Typography>
-          {/* <GoogleButton /> */}
-          <Login onClick={demoLogin}>데모 로그인 하기</Login>
+          <GoogleButton />
+          {/* <Login onClick={demoLogin}>데모 로그인 하기</Login> */}
         </Box>
       </Modal>
     </>
