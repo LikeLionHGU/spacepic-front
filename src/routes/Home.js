@@ -12,7 +12,7 @@ export default function Home() {
         <title>SPACEPIC</title>
       </Helmet>
 
-      <Header />
+      <Header currMenu="Home" />
 
       <EventView />
       {/* <MainGrid /> */}
