@@ -2,13 +2,13 @@ import React from 'react';
 import {
   Dialog as MuiDialog,
   DialogTitle as MuiDialogTitle,
-  DialogContent,
-  DialogActions,
-  // Button as MuiBtn,
+  DialogContent as MuiDialogContent,
   createTheme,
   ThemeProvider,
 } from '@mui/material';
 import styled from 'styled-components';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const theme = createTheme({
   components: {
@@ -33,68 +33,101 @@ const theme = createTheme({
 const Dialog = styled(MuiDialog)`
   .MuiDialog-paper {
     background-color: #1c1c1c;
-    width: 1000px;
-    height: 530px;
+    width: 800px;
+    height: 600px;
     border-radius: none;
+    max-width: none;
   }
+  font-family: 'Apple SD Gothic Neo', san-serif;
 `;
+
+const DialogHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: #1c1c1c;
+  padding: 18px 35px 0px;
+`;
+
 const DialogTitle = styled(MuiDialogTitle)`
   .MuiPaper-root {
     background-color: #1c1c1c;
     color: #000000;
   }
+  padding: 10px !important;
+`;
+
+const DialogContent = styled(MuiDialogContent)`
+  padding: 10px !important;
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding: 5px 35px;
 `;
 
 const Image = styled.img`
-  margin-right: 16px;
+  margin-right: 30px;
   width: 300px;
-  height: 380px;
+  height: 100%;
 `;
 
 const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  height: 100%;
+  position: relative;
 `;
 
 const Description = styled.p`
   color: #ffffff;
+  flex: 3;
   font-size: 16px;
+  font-weight: 400;
 `;
 
 const Location = styled.p`
   color: #ffffff;
+  flex: 1;
   font-size: 14px;
+  min-height: 10px;
+  font-weight: 350;
 `;
 
 const Date = styled.p`
   color: #ffffff;
+  flex: 1;
+  font-size: 14px;
+  min-height: 10px;
+  font-weight: 350;
 `;
 
 const Title = styled.h2`
   color: #ffffff;
+  flex: 2;
   font-size: 22px;
+  min-height: 40px;
+  font-weight: 500;
 `;
 
-const StyledButton = styled.button`
-  background: none;
-  color: #ffffff;
-  padding: 10px 10px;
-  font-size: 10x;
-  border: none;
-  cursor: pointer;
+const CustomIconButton = styled(IconButton)`
+  position: absolute;
+  svg {
+    font-size: 3rem;
+  }
 `;
 
 export default function DetailModal({ open, onClose, selectedPhoto }) {
   return (
     <ThemeProvider theme={theme}>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>저장 기록 보기</DialogTitle>
+        <DialogHeader>
+          <DialogTitle>저장 기록 보기</DialogTitle>
+          <CustomIconButton aria-label="close" onClick={onClose}>
+            <CloseIcon style={{ color: '#FFFFFF ' }} />
+          </CustomIconButton>
+        </DialogHeader>
         <DialogContent>
           <>
             {selectedPhoto && (
@@ -107,7 +140,8 @@ export default function DetailModal({ open, onClose, selectedPhoto }) {
                   <TextWrapper>
                     <Title>{selectedPhoto.title}</Title>
                     <Location>{selectedPhoto.place}</Location>
-                    <Date>{selectedPhoto.date}</Date>
+                    <Date>{selectedPhoto.pictureDate}</Date>
+                    <br></br>
                     <Description>{selectedPhoto.meaning}</Description>
                   </TextWrapper>
                 </ContentWrapper>
@@ -115,9 +149,6 @@ export default function DetailModal({ open, onClose, selectedPhoto }) {
             )}
           </>
         </DialogContent>
-        <DialogActions>
-          <StyledButton onClick={onClose}>CLOSE</StyledButton>
-        </DialogActions>
       </Dialog>
     </ThemeProvider>
   );
