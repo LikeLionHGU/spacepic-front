@@ -11,7 +11,7 @@ export default function Archive() {
         <title>SPACEPIC</title>
       </Helmet>
 
-      <Header />
+      <Header currMenu="Archive" />
 
       <ArchiveGrid />
 
