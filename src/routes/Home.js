@@ -2,7 +2,8 @@ import { Helmet } from 'react-helmet';
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import MainGrid from '../components/MainGrid';
+// import MainGrid from '../components/MainGrid';
+import EventView from '../components/home/EventView';
 
 export default function Home() {
   return (
@@ -11,9 +12,10 @@ export default function Home() {
         <title>SPACEPIC</title>
       </Helmet>
 
-      <Header />
+      <Header currMenu="Home" />
 
-      <MainGrid />
+      <EventView />
+      {/* <MainGrid /> */}
 
       <Footer />
     </>

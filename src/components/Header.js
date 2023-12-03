@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { ReactComponent as Logo } from '../assets/imgs/Logo.svg';
 import { Link } from 'react-router-dom';
 import { BiSolidUserCircle } from 'react-icons/bi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/material';
-// import GoogleButton from '../auth/GoogleLogin';
+import GoogleButton from '../auth/GoogleLogin';
 import { Typography } from 'antd';
 import { useSetRecoilState } from 'recoil';
 import { IsLoginState, MemberIdState } from '../store/atom';
@@ -38,7 +38,8 @@ const Btn = styled.div`
   align-items: center;
   font-size: 20px;
   gap: 10px;
-  color: #9f9f9f;
+  color: ${(props) => (props.isActive ? 'white' : '#9f9f9f')};
+
   &:hover {
     color: white;
   }
@@ -73,7 +74,8 @@ const Login = styled.div`
   }
 `;
 
-export default function Header() {
+export default function Header({ currMenu }) {
+  const [menu, setMenu] = useState(currMenu); // [menu, setMenu
   const [open, setOpen] = useState(false);
   const setIsLogin = useSetRecoilState(IsLoginState);
   const setMeberId = useSetRecoilState(MemberIdState);
@@ -87,6 +89,14 @@ export default function Header() {
     handleClose();
   };
 
+  const handleMenuClick = (menuItem) => {
+    setMenu(menuItem); // Update the active menu
+  };
+
+  useEffect(() => {
+    setMenu(currMenu);
+  }, [currMenu]);
+
   return (
     <>
       <HeaderBar>
@@ -95,13 +105,23 @@ export default function Header() {
         </Link>
         <Buttons>
           <Link to="/">
-            <Btn>Home</Btn>
+            <Btn
+              onClick={() => handleMenuClick('Home')}
+              isActive={menu === 'Home'}
+            >
+              Home
+            </Btn>
           </Link>
           <Link to="/archive">
-            <Btn>Archive</Btn>
+            <Btn
+              onClick={() => handleMenuClick('Archive')}
+              isActive={menu === 'Archive'}
+            >
+              Archive
+            </Btn>
           </Link>
           {/* <Link to="/login"> */}
-          <Btn onClick={handleOpen}>
+          <Btn onClick={handleOpen} isActive={menu === 'Login'}>
             Login <BiSolidUserCircle size={24} />
           </Btn>
           {/* </Link> */}
@@ -117,8 +137,8 @@ export default function Header() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Login
           </Typography>
-          {/* <GoogleButton /> */}
-          <Login onClick={demoLogin}>데모 로그인 하기</Login>
+          <GoogleButton />
+          {/* <Login onClick={demoLogin}>데모 로그인 하기</Login> */}
         </Box>
       </Modal>
     </>
