@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { ReactComponent as MainDesc } from '../../assets/imgs/LogoW.svg';
+import LogoW from '../../assets/imgs/LogoW.svg';
 import bgVector from '../../assets/imgs/bgVector.png';
 import btmVector from '../../assets/imgs/Union.png';
-import EventVote from './EventVote';
 import AddDialog from '../Add-dialog';
-import { useState } from 'react';
+import TopThree from './TopThree';
 
 const Container = styled.div`
+  padding-top: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +22,16 @@ const TopImg = styled.img`
   top: 0;
 `;
 
+const Logo = styled.img`
+  max-width: 200px;
+`;
+
 const BottomImg = styled(TopImg)`
   top: 100%;
 `;
 
 const Event = styled.div`
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +46,7 @@ export default function EventView() {
   return (
     <Container>
       <TopImg src={bgVector} alt="bgVector" />
-      <MainDesc />
+      <Logo src={LogoW} />
       <Event>
         <div> CONCEPT :</div>
         크리스마스와 종강을 기다리는 여러분을 표현해주세요!
@@ -50,6 +55,7 @@ export default function EventView() {
       <AddDialog />
 
       {/* TODO: 랭크 순위 배치 */}
+      <TopThree />
 
       {/* TODO: 나머지 전부 투표 배치  */}
 
