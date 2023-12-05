@@ -1,15 +1,11 @@
-import axios from 'axios';
+import axiosInstance from '../axios';
 
 export const GetDummyPhotos = async () => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_API_URL}/api/get/sample`
-  );
+  const response = await axiosInstance.get(`/api/get/sample`);
   return response;
 };
 
 export const GetPhotos = async (memberId) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_API_URL}/api/post/get/member/${memberId}`
-  );
+  const response = await axiosInstance.get(`/api/post/get/member/${memberId}`);
   return response;
 };
