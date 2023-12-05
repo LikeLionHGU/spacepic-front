@@ -1,13 +1,9 @@
 import styled from 'styled-components';
-import { directive } from '@babel/types';
-import { Directions } from '@mui/icons-material';
 import { Box, Grid } from '@mui/material';
-import { display } from '@mui/system';
 import picture from '../../assets/imgs/picutre.png';
-import { ReactComponent as SpicImg } from '../../assets/imgs/Spacepic.logo.svg';
-import { ReactComponent as Vector1 } from '../../assets/imgs/starVector.svg';
-import { ReactComponent as Vector2 } from '../../assets/imgs/starVector2.svg';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import Star1 from '../../assets/imgs/Star1.svg';
+import Star2 from '../../assets/imgs/Star2.svg';
+import Star3 from '../../assets/imgs/Star3.svg';
 
 const Pics = [
   {
@@ -35,109 +31,48 @@ const Item = styled.div`
   flex-direction: row;
   align-items: center;
   color: white;
+  gap: 20px;
 `;
 
-const Picturecontainer = styled.div`
-  padding-right: 50px;
-  padding-top: 30px;
+const Img = styled.img`
+  width: 100%;
+  height: 200px;
 `;
-const SecondPicturecontainer = styled.div`
-  padding-right: 100px;
+
+const PictureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 `;
-const PicturecontainerIncontainer = styled.div`
-  text-align: center;
-  padding-left: 60px;
+
+const Rank = styled.img`
+  position: absolute;
+  top: ${({ top }) => top || '-25%'};
+  z-index: 10;
+  filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.25));
 `;
 
 export default function TopThree() {
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, marginTop: '50px' }}>
         <Grid container spacing={2}>
           <Grid item xs={20}>
             <Item>
-              <Picturecontainer>
-                <p
-                  style={{
-                    position: 'relative',
-                    left: '55%',
-                    top: '-2%',
-                    zIndex: '5',
-                    color: 'black',
-                  }}
-                >
-                  2nd
-                </p>
-                <Vector2
-                  style={{ position: 'relative', top: '-75%', left: '50%' }}
-                >
-                  2nd
-                </Vector2>
-                <img
-                  src={Pics[0].photoUrl}
-                  alt="src/assets/imgs/picture.png"
-                  width="342px"
-                  height="229px "
-                />
-                <PicturecontainerIncontainer>
-                  <p>{Pics[0].desc}</p>
-                </PicturecontainerIncontainer>
-              </Picturecontainer>
-              <SecondPicturecontainer>
-                <p
-                  style={{
-                    position: 'relative',
-                    left: '57%',
-                    top: '-1%',
-                    zIndex: '5',
-                    fontSize: '20px',
-                    color: 'black',
-                  }}
-                >
-                  1st
-                </p>
-                <Vector1
-                  style={{ position: 'relative', top: '-75%', left: '50%' }}
-                >
-                  1st
-                </Vector1>
-                <img
-                  src={Pics[1].photoUrl}
-                  alt="src/assets/imgs/picture.png"
-                  width="391px"
-                  height="263px"
-                ></img>
-                <PicturecontainerIncontainer>
-                  <p>{Pics[1].desc}</p>
-                </PicturecontainerIncontainer>
-              </SecondPicturecontainer>
-              <Picturecontainer>
-                <p
-                  style={{
-                    position: 'relative',
-                    left: '55%',
-                    top: '-2%',
-                    zIndex: '5',
-                    color: 'black',
-                  }}
-                >
-                  3nd
-                </p>
-                <Vector2
-                  style={{ position: 'relative', top: '-75%', left: '50%' }}
-                >
-                  3rd
-                </Vector2>
-                <img
-                  src={Pics[2].photoUrl}
-                  alt="src/assets/imgs/picture.png"
-                  width="342px"
-                  height="229px"
-                ></img>
-                <PicturecontainerIncontainer>
-                  <p>{Pics[2].desc}</p>
-                </PicturecontainerIncontainer>
-              </Picturecontainer>
+              <PictureContainer>
+                <Rank src={Star2} />
+                <Img src={Pics[1].photoUrl} />
+              </PictureContainer>
+              <PictureContainer>
+                <Rank src={Star1} top="-32%" />
+                <Img src={Pics[0].photoUrl} />
+              </PictureContainer>
+              <PictureContainer>
+                <Rank src={Star3} />
+                <Img src={Pics[2].photoUrl} />
+              </PictureContainer>
             </Item>
           </Grid>
         </Grid>
