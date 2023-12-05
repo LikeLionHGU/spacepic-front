@@ -77,17 +77,9 @@ const Login = styled.div`
 export default function Header({ currMenu }) {
   const [menu, setMenu] = useState(currMenu); // [menu, setMenu
   const [open, setOpen] = useState(false);
-  const setIsLogin = useSetRecoilState(IsLoginState);
-  const setMeberId = useSetRecoilState(MemberIdState);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const demoLogin = () => {
-    setIsLogin(true);
-    setMeberId(1);
-    handleClose();
-  };
 
   const handleMenuClick = (menuItem) => {
     setMenu(menuItem); // Update the active menu
@@ -127,6 +119,7 @@ export default function Header({ currMenu }) {
           {/* </Link> */}
         </Buttons>
       </HeaderBar>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -137,7 +130,7 @@ export default function Header({ currMenu }) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Login
           </Typography>
-          <GoogleButton />
+          <GoogleButton onClose={() => setOpen(false)} />
         </Box>
       </Modal>
     </>
