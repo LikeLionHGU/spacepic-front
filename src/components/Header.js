@@ -21,14 +21,13 @@ const HeaderBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 75px 200px;
+  padding: 50px 100px;
   position: fixed;
 `;
 
 const Buttons = styled.div`
   display: flex;
   align-items: center;
-  width: 300px;
   font-size: 20px;
   gap: 20px;
 `;
@@ -112,11 +111,9 @@ export default function Header({ currMenu }) {
               Archive
             </Btn>
           </Link> */}
-          {/* <Link to="/login"> */}
           <Btn onClick={handleOpen} isActive={menu === 'Login'}>
             Login <BiSolidUserCircle size={24} />
           </Btn>
-          {/* </Link> */}
         </Buttons>
       </HeaderBar>
 
