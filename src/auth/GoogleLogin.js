@@ -6,7 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import { IsLoginState, MemberIdState } from '../store/atom';
 import axiosInstance from '../axios';
 
-export default function GoogleButton() {
+export default function GoogleButton({ onClose }) {
   const setLogin = useSetRecoilState(IsLoginState);
   const setMemberId = useSetRecoilState(MemberIdState);
 
@@ -27,6 +27,7 @@ export default function GoogleButton() {
         console.log('Member ID:', memberId);
         setLogin(true);
         setMemberId(memberId);
+        onClose();
         history.push('/');
       } else {
         throw new Error('API request failed');
