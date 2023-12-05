@@ -3,6 +3,7 @@ import { ReactComponent as MainDesc } from '../../assets/imgs/LogoW.svg';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import bgVector from '../../assets/imgs/bgVector.png';
 import btmVector from '../../assets/imgs/Union.png';
+import AddPhoto from '../../assets/imgs/postIcon.svg';
 
 const Container = styled.div`
   display: flex;
@@ -35,19 +36,9 @@ const Event = styled.div`
   margin: 30px 0px;
 `;
 
-const AddPhotoButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 77px;
-  height: 36px;
-  background-color: #494949;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  outline: none;
+const AddPhotoBtn = styled.img`
+  width: 100px;
+  /* height: 50px; */
 `;
 
 export default function EventView() {
@@ -56,12 +47,12 @@ export default function EventView() {
       <TopImg src={bgVector} alt="bgVector" />
       <MainDesc />
       <Event>
-        <div>이번주 컨셉 주제: </div>
+        <div> CONCEPT :</div>
         크리스마스와 종강을 기다리는 여러분을 표현해주세요!
       </Event>
 
       <Link to="/addphoto" underline="none">
-        <AddPhotoButton>개시하기</AddPhotoButton>
+        <AddPhotoBtn src={AddPhoto} />
       </Link>
 
       {/* TODO: 랭크 순위 배치 */}
