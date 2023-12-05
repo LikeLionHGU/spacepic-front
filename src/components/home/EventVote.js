@@ -26,7 +26,6 @@ const Page = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  min-height: 100vh;
   border-left: 1px solid white;
   padding-left: 15px;
 `;

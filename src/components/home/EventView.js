@@ -58,7 +58,7 @@ export default function EventView() {
       <TopThree />
 
       {/* TODO: 나머지 전부 투표 배치  */}
-      {/* <EventVote /> */}
+      <EventVote />
 
       <BottomImg src={btmVector} alt="btmVector" />
     </Container>
