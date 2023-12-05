@@ -51,7 +51,6 @@ export default function EventView() {
         <div style={{ fontWeight: 'bold' }}> CONCEPT :</div>
         크리스마스와 종강을 기다리는 여러분을 표현해주세요!
       </Event>
-
       <AddDialog />
 
       {/* TODO: 랭크 순위 배치 */}

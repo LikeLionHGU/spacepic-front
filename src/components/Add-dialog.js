@@ -14,7 +14,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
+  padding: 20px;
 `;
 
 const Icon = styled.img`
@@ -23,7 +23,7 @@ const Icon = styled.img`
 `;
 
 const Title = styled.div`
-  font-size: 40px;
+  font-size: 32px;
   font-weight: bold;
 `;
 
@@ -35,13 +35,14 @@ const Desc = styled.div`
   color: #8c8c8c;
 `;
 
+const QRImg = styled.img`
+  width: 200px;
+`;
+
 export default function AddDialog() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -54,7 +55,7 @@ export default function AddDialog() {
         open={isModalOpen}
         footer={false}
         onCancel={handleCancel}
-        width={800}
+        width={600}
       >
         <Container>
           <Icon src={ThreeIcon} alt="ThreeIcon" />
@@ -66,7 +67,7 @@ export default function AddDialog() {
             <div>아래의 QR코드를 통해 간편 회원가입 후,</div>
             <div> 여러분의 크리스마스를 네컷사진으로 뽐내보세요:)</div>
           </Desc>
-          <img
+          <QRImg
             src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
             alt="ThreeIcon"
           />
