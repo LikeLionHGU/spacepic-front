@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import { ReactComponent as MainDesc } from '../../assets/imgs/LogoW.icon.svg';
+import { ReactComponent as MainDesc } from '../../assets/imgs/LogoW.svg';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import bgVector from '../../assets/imgs/bgVector.png';
+import btmVector from '../../assets/imgs/Union.png';
 
 const Container = styled.div`
   display: flex;
@@ -9,6 +11,17 @@ const Container = styled.div`
   justify-content: center;
   height: 100vh;
   color: white;
+`;
+
+const TopImg = styled.img`
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+`;
+
+const BottomImg = styled(TopImg)`
+  top: 100%;
 `;
 
 const Event = styled.div`
@@ -40,6 +53,7 @@ const AddPhotoButton = styled.button`
 export default function EventView() {
   return (
     <Container>
+      <TopImg src={bgVector} alt="bgVector" />
       <MainDesc />
       <Event>
         <div>이번주 컨셉 주제: </div>
@@ -53,6 +67,8 @@ export default function EventView() {
       {/* TODO: 랭크 순위 배치 */}
 
       {/* TODO: 나머지 전부 투표 배치  */}
+
+      <BottomImg src={btmVector} alt="btmVector" />
     </Container>
   );
 }
