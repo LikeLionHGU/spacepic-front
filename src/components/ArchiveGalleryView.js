@@ -5,6 +5,8 @@ import { useRecoilValue } from 'recoil';
 import { MemberIdState } from '../store/atom';
 import { useState } from 'react';
 import DetailModal from './DetailModal';
+import { Box } from '@mui/material';
+import { likePhoto } from '../apis/like';
 
 const Photo = styled.div`
   height: 100%;
@@ -12,6 +14,7 @@ const Photo = styled.div`
   box-sizing: border-box;
   border-right: ${(props) =>
     props.index % 3 === 0 ? 'none' : '1px solid white'};
+  position: relative;
 `;
 
 const Img = styled.img`
@@ -52,7 +55,7 @@ const Context = styled.div`
 export default function ArchiveGalleryView() {
   const memberId = useRecoilValue(MemberIdState);
 
-  const { data: photos } = useQuery(
+  const { data: photos, refetch: refetchPhotos } = useQuery(
     ['GetPhotos', GetPhotos],
     () => GetPhotos(memberId).then((response) => response.data),
     {
@@ -61,6 +64,11 @@ export default function ArchiveGalleryView() {
       },
     }
   );
+
+  const like = async (postId, memberId) => {
+    await likePhoto(postId, memberId);
+    refetchPhotos();
+  };
 
   const [openModal, setOpenModal] = useState(false);
   const [modalData, setModalData] = useState(null);
@@ -80,13 +88,46 @@ export default function ArchiveGalleryView() {
       <Page>
         <PhotoFrame>
           {photos?.map((photo, index) => (
-            <Photo
-              onClick={() => handleOpenModal(photo)}
-              key={photo.postId}
-              num={photo.postId}
-              index={index + 1}
-            >
-              <Img src={photo.imageUrl} alt={photo.title} />
+            <Photo key={photo.postId} num={photo.postId} index={index + 1}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: 6,
+                  left: 'calc(50% - 28px)',
+                  width: 56,
+                  height: 56,
+                  backgroundImage: photo.isLiked
+                    ? 'url(/images/yellow-star.svg)'
+                    : 'url(/images/grey-star.svg)',
+                  backgroundSize: 'cover',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    transform: 'scale(1.1)',
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                }}
+                onClick={() => like(photo.postId, memberId)}
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: -2,
+                    left: 0,
+                    width: 56,
+                    height: 56,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  {photo.likeCount ?? 0}
+                </Box>
+              </Box>
+              <Img
+                src={photo.imageUrl}
+                alt={photo.title}
+                onClick={() => handleOpenModal(photo)}
+              />
               <Context>{photo.title}</Context>
             </Photo>
           ))}

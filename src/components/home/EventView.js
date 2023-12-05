@@ -1,5 +1,14 @@
+import { directive } from '@babel/types';
+import { Directions } from '@mui/icons-material';
+import { Box, Grid } from '@mui/material';
+import { display } from '@mui/system';
+import picture from '../../assets/imgs/picutre.png'
 import styled from 'styled-components';
 import LogoW from '../../assets/imgs/LogoW.svg';
+import { ReactComponent as SpicImg } from '../../assets/imgs/Spacepic.logo.svg';
+import { ReactComponent as Vector1 } from '../../assets/imgs/starVector.svg';
+import { ReactComponent as Vector2 } from '../../assets/imgs/starVector2.svg';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import bgVector from '../../assets/imgs/bgVector.png';
 import btmVector from '../../assets/imgs/Union.png';
 import AddDialog from '../Add-dialog';
@@ -44,6 +53,7 @@ const Event = styled.div`
 
 export default function EventView() {
   return (
+    
     <Container>
       <TopImg src={bgVector} alt="bgVector" />
       <Logo src={LogoW} />
@@ -63,3 +73,4 @@ export default function EventView() {
     </Container>
   );
 }
+
