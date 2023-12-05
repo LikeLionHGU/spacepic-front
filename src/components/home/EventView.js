@@ -4,6 +4,7 @@ import bgVector from '../../assets/imgs/bgVector.png';
 import btmVector from '../../assets/imgs/Union.png';
 import AddDialog from '../Add-dialog';
 import TopThree from './TopThree';
+import EventVote from './EventVote';
 
 const Container = styled.div`
   padding-top: 150px;
@@ -58,6 +59,7 @@ export default function EventView() {
       <TopThree />
 
       {/* TODO: 나머지 전부 투표 배치  */}
+      <EventVote />
 
       <BottomImg src={btmVector} alt="btmVector" />
     </Container>
