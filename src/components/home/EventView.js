@@ -7,7 +7,7 @@ import TopThree from './TopThree';
 import EventVote from './EventVote';
 
 const Container = styled.div`
-  padding-top: 150px;
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@ const TopImg = styled.img`
 `;
 
 const Logo = styled.img`
-  max-width: 200px;
+  max-width: 180px;
 `;
 
 const BottomImg = styled(TopImg)`
@@ -32,15 +32,14 @@ const BottomImg = styled(TopImg)`
 `;
 
 const Event = styled.div`
-  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.5;
-  margin: 30px 0px;
+  margin: 20px 0px;
 `;
 
 export default function EventView() {
@@ -49,7 +48,7 @@ export default function EventView() {
       <TopImg src={bgVector} alt="bgVector" />
       <Logo src={LogoW} />
       <Event>
-        <div> CONCEPT :</div>
+        <div style={{ fontWeight: 'bold' }}> CONCEPT :</div>
         크리스마스와 종강을 기다리는 여러분을 표현해주세요!
       </Event>
 
@@ -59,7 +58,7 @@ export default function EventView() {
       <TopThree />
 
       {/* TODO: 나머지 전부 투표 배치  */}
-      <EventVote />
+      {/* <EventVote /> */}
 
       <BottomImg src={btmVector} alt="btmVector" />
     </Container>

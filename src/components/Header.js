@@ -35,7 +35,7 @@ const Buttons = styled.div`
 const Btn = styled.div`
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
   gap: 10px;
   color: ${(props) => (props.isActive ? 'white' : '#9f9f9f')};
 
