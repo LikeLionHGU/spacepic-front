@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { ReactComponent as MainDesc } from '../../assets/imgs/LogoW.icon.svg';
 import { ReactComponent as SpicImg } from '../../assets/imgs/Spacepic.logo.svg';
 import { ReactComponent as Vector1 } from '../../assets/imgs/starVector.svg';
+import { ReactComponent as Vector2 } from '../../assets/imgs/starVector2.svg';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Pics = [
@@ -38,6 +39,7 @@ const Item = styled.div`
   height: 100vh;
   color: white;
 `;
+
 
 
 const Container = styled.div`
@@ -87,15 +89,18 @@ const AddPhotoButton = styled.button`
 `;
 
 const Picturecontainer = styled.div`
-  padding-right: 100px;
+  
+  padding-right: 50px;
   padding-top: 30px;
 `
 const SecondPicturecontainer = styled.div`
   padding-right: 100px;
+  
 
 `
 const PicturecontainerIncontainer = styled.div`
   text-align: center;
+  padding-left : 60px;
 `
 
 export default function EventView() {
@@ -106,9 +111,7 @@ export default function EventView() {
       <Event>
         <MainDesc />
         <SpicImg />
-          <Vector1 style={{position: 'absolute', top: '53%', left: '45%'}}/>
-          <Vector1 style={{position: 'absolute', top: '53%', left: '35%'}}/>
-          <Vector1 style={{position: 'absolute', top: '53%', left: '55%'}}/>
+
         <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="779" viewBox="0 0 1280 779" fill="none" style={{position: 'absolute', width: '100%', height: '100%', top: '90px', left: 0, zIndex: -1}}>
   <mask id="path-1-inside-1_1465_1298" fill="white">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M109.916 569.832C164.875 569.832 216.199 554.272 259.724 527.315C289.576 553.869 328.904 570 372 570C410.699 570 446.359 556.993 474.849 535.112C495.303 595.67 549.141 640.853 614.467 648.765C631.988 723.418 699.003 779 779 779C829.845 779 875.446 756.546 906.428 721.013C947.899 753.579 1000.18 773 1057 773C1191.76 773 1301 663.758 1301 529C1301 517.517 1300.21 506.219 1298.67 495.158C1390.64 460.201 1456 371.233 1456 267C1456 132.243 1346.76 23 1212 23C1077.24 23 968 132.243 968 267C968 278.483 968.793 289.781 970.328 300.842C903.458 326.259 850.656 380.229 826.816 447.859C818 445.264 808.884 443.367 799.533 442.235C787.246 389.883 750.619 346.91 702.244 325.907C694.14 240.119 621.908 173 534 173C481.318 173 434.266 197.105 403.273 234.888C398.94 234.077 394.549 233.432 390.106 232.959C365.683 100.413 249.526 0 109.916 0C-47.4387 0 -175 127.561 -175 284.916C-175 442.271 -47.4387 569.832 109.916 569.832Z"/>
@@ -133,16 +136,22 @@ export default function EventView() {
       <Grid container spacing={2}>
         <Grid item xs={20}>
           <Item>
-            <div style={{display: 'flex'}}>
+            <div style={{display: 'flex', minWidth: '300px', maxWidth: '2000px', flexWrap: 'nowrap' }}>
                 <Picturecontainer>
-                  <img src={Pics[0].photoUrl} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
+                  <p style={{position: 'relative', left: '55%', top: '-2%', zIndex: '5', color: 'black'}}>2nd</p>
+                  <Vector2 style={{position: 'relative', top: '-75%',left: '50%'}}>2nd</Vector2>
+                  <img src={Pics[0].photoUrl} alt='src/assets/imgs/picture.png' width="342px" height="229px "></img>
                   <PicturecontainerIncontainer><p>{Pics[0].desc}</p></PicturecontainerIncontainer>
                 </Picturecontainer>
                 <SecondPicturecontainer>
+                  <p  style={{position: 'relative', left: '57%', top: '-1%', zIndex: '5', fontSize: '20px', color: 'black'}}>1st</p>
+                  <Vector1 style={{position: 'relative',top: '-75%', left: '50%'}}>1st</Vector1>
                   <img src={Pics[1].photoUrl} alt='src/assets/imgs/picture.png' width="391px" height="263px"></img>
                   <PicturecontainerIncontainer><p>{Pics[1].desc}</p></PicturecontainerIncontainer>
                 </SecondPicturecontainer>
                 <Picturecontainer>
+                  <p  style={{position: 'relative', left: '55%', top: '-2%', zIndex: '5', color: 'black'}}>3nd</p>
+                  <Vector2 style={{position: 'relative',top: '-75%', left: '50%'}}>3rd</Vector2>
                   <img src={Pics[2].photoUrl} alt='src/assets/imgs/picture.png' width="342px" height="229px"></img>
                   <PicturecontainerIncontainer><p>{Pics[2].desc}</p></PicturecontainerIncontainer>
                 </Picturecontainer>
