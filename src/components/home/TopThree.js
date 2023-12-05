@@ -54,7 +54,8 @@ const Rank = styled.img`
   filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.25));
 `;
 
-export default function TopThree() {
+export default function TopThree({ topPhotos }) {
+  // TODO: topPhotos를 받아와서 랭킹순으로 정렬해서 보여주기
   return (
     <>
       <Box sx={{ flexGrow: 1, marginTop: '50px' }}>
@@ -63,15 +64,15 @@ export default function TopThree() {
             <Item>
               <PictureContainer>
                 <Rank src={Star2} />
-                <Img src={Pics[1].photoUrl} />
+                <Img src={Pics[1]?.photoUrl} />
               </PictureContainer>
               <PictureContainer>
                 <Rank src={Star1} top="-32%" />
-                <Img src={Pics[0].photoUrl} />
+                <Img src={Pics[0]?.photoUrl} />
               </PictureContainer>
               <PictureContainer>
                 <Rank src={Star3} />
-                <Img src={Pics[2].photoUrl} />
+                <Img src={Pics[2]?.photoUrl} />
               </PictureContainer>
             </Item>
           </Grid>

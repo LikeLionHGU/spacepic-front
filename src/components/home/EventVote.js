@@ -1,10 +1,9 @@
-import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import { GetPhotos, likePhoto } from '../../apis/photoApi';
-import { useRecoilValue } from 'recoil';
+import { likePhoto } from '../../apis/photoApi';
 import { useState } from 'react';
 import DetailModal from '..//DetailModal';
 import { Box } from '@mui/material';
+import { useRecoilValue } from 'recoil';
 import { MemberIdState } from '../../store/atom';
 
 const Photo = styled.div`
@@ -49,18 +48,8 @@ const Context = styled.div`
   margin-bottom: 10px;
 `;
 
-export default function EventVote() {
+export default function EventVote({ photos, refetchPhotos }) {
   const memberId = useRecoilValue(MemberIdState);
-
-  const { data: photos, refetch: refetchPhotos } = useQuery(
-    ['GetPhotos', GetPhotos],
-    () => GetPhotos(memberId).then((response) => response.data),
-    {
-      onSuccess: (data) => {
-        console.log(data);
-      },
-    }
-  );
 
   const like = async (postId, memberId) => {
     await likePhoto(postId, memberId);

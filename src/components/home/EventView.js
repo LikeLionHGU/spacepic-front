@@ -5,6 +5,10 @@ import btmVector from '../../assets/imgs/Union.png';
 import AddDialog from '../Add-dialog';
 import TopThree from './TopThree';
 import EventVote from './EventVote';
+import { useQuery } from 'react-query';
+import { GetPhotos } from '../../apis/photoApi';
+import { useRecoilValue } from 'recoil';
+import { MemberIdState } from '../../store/atom';
 
 const Container = styled.div`
   padding-top: 100px;
@@ -43,6 +47,20 @@ const Event = styled.div`
 `;
 
 export default function EventView() {
+  const memberId = useRecoilValue(MemberIdState);
+
+  const { data: photos, refetch: refetchPhotos } = useQuery(
+    ['GetPhotos', GetPhotos],
+    () => GetPhotos(memberId).then((response) => response.data),
+    {
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    }
+  );
+
+  const topPhotos = photos?.slice(0, 3);
+
   return (
     <Container>
       <TopImg src={bgVector} alt="bgVector" />
@@ -54,10 +72,10 @@ export default function EventView() {
       <AddDialog />
 
       {/* TODO: 랭크 순위 배치 */}
-      <TopThree />
+      <TopThree topPhotos={topPhotos} />
 
       {/* TODO: 나머지 전부 투표 배치  */}
-      <EventVote />
+      <EventVote photos={photos} refetchPhotos={refetchPhotos} />
 
       <BottomImg src={btmVector} alt="btmVector" />
     </Container>
