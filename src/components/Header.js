@@ -138,7 +138,6 @@ export default function Header({ currMenu }) {
             Login
           </Typography>
           <GoogleButton />
-          {/* <Login onClick={demoLogin}>데모 로그인 하기</Login> */}
         </Box>
       </Modal>
     </>
