@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { ReactComponent as MainDesc } from '../../assets/imgs/LogoW.svg';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import bgVector from '../../assets/imgs/bgVector.png';
 import btmVector from '../../assets/imgs/Union.png';
-import AddPhoto from '../../assets/imgs/postIcon.svg';
+import EventVote from './EventVote';
+import AddDialog from '../Add-dialog';
+import { useState } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -36,11 +37,6 @@ const Event = styled.div`
   margin: 30px 0px;
 `;
 
-const AddPhotoBtn = styled.img`
-  width: 100px;
-  /* height: 50px; */
-`;
-
 export default function EventView() {
   return (
     <Container>
@@ -51,9 +47,7 @@ export default function EventView() {
         크리스마스와 종강을 기다리는 여러분을 표현해주세요!
       </Event>
 
-      <Link to="/addphoto" underline="none">
-        <AddPhotoBtn src={AddPhoto} />
-      </Link>
+      <AddDialog />
 
       {/* TODO: 랭크 순위 배치 */}
 
