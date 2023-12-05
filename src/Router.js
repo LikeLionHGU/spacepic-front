@@ -1,9 +1,10 @@
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import AddPhoto from './routes/AddPhoto';
+// import AddPhoto from './routes/AddPhoto';
 import Home from './routes/Home';
 import Archive from './routes/Archive';
 import { useRecoilValue } from 'recoil';
 import { IsLoginState } from './store/atom';
+import AddPhotoView from './components/AddPhotoView';
 
 export default function Router() {
   const isLogin = useRecoilValue(IsLoginState);
@@ -19,7 +20,7 @@ export default function Router() {
               <Archive />
             </Route>
             <Route exact path="/addphoto">
-              <AddPhoto />
+              <AddPhotoView />
             </Route>
           </>
         )}

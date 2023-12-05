@@ -22,6 +22,9 @@ import Header from '../components/Header';
 import { RHFUpload } from '../components/hook-form';
 import styled from 'styled-components';
 import FormProvider from '../components/hook-form/FormProvider';
+import { useRecoilValue } from 'recoil';
+import { MemberIdState } from '../store/atom';
+import axiosInstance from '../axios';
 
 const Pick = styled.div`
   position: relative;
@@ -69,6 +72,7 @@ const photoFormSchema = Yup.object().shape({
 });
 
 export default function AddPhoto() {
+  const memberId = useRecoilValue(MemberIdState);
   const [step, setStep] = useState(1);
   const history = useHistory();
 
@@ -121,7 +125,7 @@ export default function AddPhoto() {
 
     const postData = {
       meaning: data.recode,
-      memberId: 1,
+      memberId: memberId,
       title: data.title,
       place: data.place,
       people: data.with,
@@ -137,8 +141,8 @@ export default function AddPhoto() {
       })
     );
 
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/api/post/add`, formData, {
+    axiosInstance
+      .post(`/api/post/add`, formData, {
         'Content-Type': 'multipart/form-data',
       })
       .then((result) => {

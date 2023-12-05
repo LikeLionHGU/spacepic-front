@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 const Item = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
   height: 100vh;
   color: white;
   padding-left: 30px;
