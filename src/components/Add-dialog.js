@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const AddPhotoBtn = styled.img`
   width: 100px;
-  /* height: 50px; */
+  margin-bottom: 40px;
 `;
 
 const Container = styled.div`
