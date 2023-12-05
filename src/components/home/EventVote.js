@@ -8,16 +8,14 @@ import { MemberIdState } from '../../store/atom';
 
 const Photo = styled.div`
   height: 100%;
-  padding: 30px;
+  padding: 10px;
   box-sizing: border-box;
-  border-right: ${(props) =>
-    props.index % 3 === 0 ? 'none' : '1px solid white'};
   position: relative;
 `;
 
 const Img = styled.img`
-  width: 300px;
-  height: 434px;
+  width: 100%;
+  height: 300px;
   object-fit: cover;
 `;
 
@@ -25,13 +23,12 @@ const Page = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border-left: 1px solid white;
-  padding-left: 15px;
+  margin-top: 50px;
 `;
 
 const PhotoFrame = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 1fr;
   grid-auto-flow: dense;
 `;
@@ -44,7 +41,6 @@ const Context = styled.div`
   align-items: center;
   color: white;
   font-size: 18px;
-  border-bottom: 1px solid white;
   margin-bottom: 10px;
 `;
 
