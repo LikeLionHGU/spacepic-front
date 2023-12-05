@@ -21,7 +21,7 @@ const HeaderBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 75px 50px;
+  padding: 75px 200px;
   position: fixed;
 `;
 
@@ -77,17 +77,9 @@ const Login = styled.div`
 export default function Header({ currMenu }) {
   const [menu, setMenu] = useState(currMenu); // [menu, setMenu
   const [open, setOpen] = useState(false);
-  const setIsLogin = useSetRecoilState(IsLoginState);
-  const setMeberId = useSetRecoilState(MemberIdState);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const demoLogin = () => {
-    setIsLogin(true);
-    setMeberId(1);
-    handleClose();
-  };
 
   const handleMenuClick = (menuItem) => {
     setMenu(menuItem); // Update the active menu
@@ -112,14 +104,14 @@ export default function Header({ currMenu }) {
               Home
             </Btn>
           </Link>
-          <Link to="/archive">
+          {/* <Link to="/archive">
             <Btn
               onClick={() => handleMenuClick('Archive')}
               isActive={menu === 'Archive'}
             >
               Archive
             </Btn>
-          </Link>
+          </Link> */}
           {/* <Link to="/login"> */}
           <Btn onClick={handleOpen} isActive={menu === 'Login'}>
             Login <BiSolidUserCircle size={24} />
@@ -127,6 +119,7 @@ export default function Header({ currMenu }) {
           {/* </Link> */}
         </Buttons>
       </HeaderBar>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -137,7 +130,7 @@ export default function Header({ currMenu }) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Login
           </Typography>
-          <GoogleButton />
+          <GoogleButton onClose={() => setOpen(false)} />
         </Box>
       </Modal>
     </>
