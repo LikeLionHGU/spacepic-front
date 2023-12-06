@@ -5,6 +5,7 @@ import DetailModal from '..//DetailModal';
 import { Box } from '@mui/material';
 import { useRecoilValue } from 'recoil';
 import { MemberIdState } from '../../store/atom';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const Photo = styled.div`
   height: 100%;
@@ -44,6 +45,38 @@ const Context = styled.div`
   margin-bottom: 10px;
 `;
 
+const CustomTooltip = styled(({ className, ...props }) => (
+  <Tooltip
+    {...props}
+    classes={{ popper: className }}
+    placement="top"
+    arrow
+    PopperProps={{
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, -3],
+          },
+        },
+      ],
+    }}
+  />
+))`
+  & .${tooltipClasses.tooltip} {
+    background-color: white;
+    color: black;
+    font-size: 0.9rem;
+    border-radius: 0px;
+    font-family: 'Apple SD Gothic Neo', san-serif;
+    font-weight: 400;
+  }
+
+  & .${tooltipClasses.arrow} {
+    color: white;
+  }
+`;
+
 export default function EventVote({ photos, refetchPhotos }) {
   const memberId = useRecoilValue(MemberIdState);
 
@@ -71,40 +104,42 @@ export default function EventVote({ photos, refetchPhotos }) {
         <PhotoFrame>
           {photos?.map((photo, index) => (
             <Photo key={photo.postId} num={photo.postId} index={index + 1}>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: 6,
-                  left: 'calc(50% - 28px)',
-                  width: 56,
-                  height: 56,
-                  backgroundImage: photo.isLiked
-                    ? 'url(/images/yellow-star.svg)'
-                    : 'url(/images/grey-star.svg)',
-                  backgroundSize: 'cover',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                }}
-                onClick={() => like(photo.postId, memberId)}
-              >
+              <CustomTooltip title="별을 눌러 좋아요를 표시해보세요!" arrow>
                 <Box
                   sx={{
                     position: 'absolute',
-                    top: -2,
-                    left: 0,
+                    top: 6,
+                    left: 'calc(50% - 28px)',
                     width: 56,
                     height: 56,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    backgroundImage: photo.isLiked
+                      ? 'url(/images/yellow-star.svg)'
+                      : 'url(/images/grey-star.svg)',
+                    backgroundSize: 'cover',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      transform: 'scale(1.1)',
+                      transition: 'all 0.3s ease-in-out',
+                    },
                   }}
+                  onClick={() => like(photo.postId, memberId)}
                 >
-                  {photo.likeCount ?? 0}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: -2,
+                      left: 0,
+                      width: 56,
+                      height: 56,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    {photo.likeCount ?? 0}
+                  </Box>
                 </Box>
-              </Box>
+              </CustomTooltip>
               <Img
                 src={photo.imageUrl}
                 alt={photo.title}
