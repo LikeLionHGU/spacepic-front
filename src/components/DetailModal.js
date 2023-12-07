@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dialog as MuiDialog,
   DialogTitle as MuiDialogTitle,
@@ -16,7 +16,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: '#FFFFFF',
-          fontSize: 24, // 원하는 폰트 색상으로 변경해주세요
+          fontSize: 24,
         },
       },
     },
@@ -118,7 +118,28 @@ const CustomIconButton = styled(IconButton)`
   }
 `;
 
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
+
 export default function DetailModal({ open, onClose, selectedPhoto }) {
+  const [width] = useWindowSize();
+
+  const isMobile = width <= 768;
+
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Dialog open={open} onClose={onClose}>
